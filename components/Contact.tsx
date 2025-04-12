@@ -69,7 +69,8 @@ export function Contact({ contactInfo }: ContactProps) {
     }
 
     try {
-      const token = await recaptchaRef.current?.executeAsync();
+      // Get the reCAPTCHA token
+      const token = recaptchaRef.current?.getValue();
 
       if (!token) {
         setErrors((prev) => ({
@@ -217,11 +218,12 @@ export function Contact({ contactInfo }: ContactProps) {
                   )}
                 </div>
 
-                <div className="flex justify-center">
+                <div className="flex justify-center my-4">
                   <ReCAPTCHA
                     ref={recaptchaRef}
                     sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
                     size="normal"
+                    theme="light"
                     onChange={(token) => {
                       if (token) {
                         setErrors((prev) => ({ ...prev, captcha: "" }));
