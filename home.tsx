@@ -219,7 +219,7 @@ export default function Home() {
           </div>
 
           {/* Gallery Grid */}
-          <Gallery sculptures={sculptures.slice(1)} />
+          <Gallery sculptures={sculptures} />
         </div>
       </section>
 

@@ -80,7 +80,7 @@ export const sculptures: Sculpture[] = [
     id: "5",
     title: "Sculptură Modernă Abstractă",
     description: "O piesă contemporană care combină forme abstracte cu elemente tradiționale, creată pentru a adăuga un accent artistic modern în orice spațiu.",
-    imageUrl: "/sculptures/sculpture-5.jpg",
+    imageUrl: "/sculptures/sculpture-1.jpg",
     category: "Sculpturi",
     features: [
       "Design Modern",
@@ -149,6 +149,25 @@ export const sculptures: Sculpture[] = [
       height: 190,
       width: 75,
       depth: 75
+    },
+    material: "Granit"
+  },
+  {
+    id: "8a",
+    title: "Sculptură Decorativă",
+    description: "Sculptură decorativă cu design modern și linii elegante.",
+    imageUrl: "/sculptures/sculpture-5.jpg",
+    category: "Sculpturi",
+    features: [
+      "Design Modern",
+      "Linii Elegante",
+      "Finisaj Premium",
+      "Versatilitate"
+    ],
+    dimensions: {
+      height: 165,
+      width: 65,
+      depth: 65
     },
     material: "Granit"
   },
@@ -230,7 +249,6 @@ export const sculptures: Sculpture[] = [
     },
     material: "Piatră"
   },
-  
 
   // Altele
   {
