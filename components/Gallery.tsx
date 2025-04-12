@@ -9,15 +9,15 @@ interface GalleryProps {
 }
 
 export function Gallery({ sculptures }: GalleryProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [selectedCategory, setSelectedCategory] = useState<string>("Toate");
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   // Get unique categories
-  const categories = ["All", ...new Set(sculptures.map((s) => s.category))];
+  const categories = ["Toate", ...new Set(sculptures.map((s) => s.category))];
 
   // Filter sculptures based on selected category
   const filteredSculptures =
-    selectedCategory === "All"
+    selectedCategory === "Toate"
       ? sculptures
       : sculptures.filter((s) => s.category === selectedCategory);
 

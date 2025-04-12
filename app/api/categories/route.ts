@@ -7,8 +7,13 @@ import fs from "fs/promises";
 export async function GET() {
   try {
     const categories = await prisma.category.findMany({
-      include: {
-        sculptures: true,
+      select: {
+        id: true,
+        name: true,
+        slug: true,
+      },
+      orderBy: {
+        name: "asc",
       },
     });
 
