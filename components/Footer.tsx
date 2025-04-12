@@ -121,7 +121,7 @@ export function Footer({ contactInfo }: FooterProps) {
                   onClick={(e) => handleClick(e, "services")}
                   className="text-white/70 hover:text-[#D6A461] transition-colors cursor-pointer"
                 >
-                  Monumente Personalizate
+                  Monumente Funerare
                 </a>
               </li>
               <li>

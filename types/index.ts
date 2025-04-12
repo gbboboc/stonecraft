@@ -19,4 +19,24 @@ export interface Sculpture {
     depth: number;
   };
   material: string;
+}
+
+export interface ContactInfo {
+  phone: string;
+  email: string;
+  address: string;
+  socialMedia: {
+    facebook: string;
+    twitter: string;
+    instagram: string;
+    linkedin: string;
+  };
+}
+
+export interface Service {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  link: string;
 } 

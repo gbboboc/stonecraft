@@ -22,11 +22,14 @@ import { sculptures } from "./data/sculptures";
 import { contactInfo } from "./data/contact";
 import { categories } from "./data/categories";
 import CategoriesGrid from "./components/CategoriesGrid";
+import { ConsultationModal } from "./components/ConsultationModal";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [currentSculptureIndex, setCurrentSculptureIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,6 +56,20 @@ export default function Home() {
 
   const currentSculpture = sculptures[currentSculptureIndex];
 
+  const handleExploreClick = () => {
+    const gallerySection = document.getElementById("gallery");
+    if (gallerySection) {
+      gallerySection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleProcessClick = () => {
+    const servicesSection = document.getElementById("services");
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#FAFAFA]">
       <Navigation items={navigationItems} isScrolled={isScrolled} />
@@ -73,12 +90,27 @@ export default function Home() {
                 rezistă trecerii timpului.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-[#333333] text-white px-8 py-3 rounded-sm font-medium hover:bg-[#222222] transition-colors">
-                  Explorează Colecția
+                <button
+                  onClick={handleExploreClick}
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                  className="group relative bg-[#333333] text-white px-8 py-3 rounded-sm font-medium hover:bg-[#222222] transition-all duration-300 overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    Explorează Colecția
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#D6A461] to-[#C89551] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
-                <button className="border border-[#333333] text-[#333333] px-8 py-3 rounded-sm font-medium hover:bg-[#333333] hover:text-white transition-colors flex items-center justify-center gap-2">
-                  <span>Procesul Nostru</span>
-                  <ArrowRight className="h-4 w-4" />
+                <button
+                  onClick={handleProcessClick}
+                  className="group relative border border-[#333333] text-[#333333] px-8 py-3 rounded-sm font-medium hover:bg-[#333333] hover:text-white transition-all duration-300 overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    Procesul Nostru
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                  <div className="absolute inset-0 bg-[#333333] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
               </div>
             </div>
@@ -146,12 +178,25 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <button className="whitespace-nowrap bg-[#D6A461] hover:bg-[#C89551] text-[#333333] font-medium py-3 px-8 rounded-sm transition-colors">
-              Programează Acum
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="group relative whitespace-nowrap bg-[#D6A461] hover:bg-[#C89551] text-[#333333] font-medium py-3 px-8 rounded-sm transition-all duration-300 overflow-hidden"
+            >
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                Programează Acum
+                <Calendar className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#D6A461] to-[#C89551] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
           </div>
         </div>
       </section>
+
+      {/* Consultation Modal */}
+      <ConsultationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
 
       {/* Services Section */}
       <Services />
