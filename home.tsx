@@ -145,62 +145,12 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Featured Sculpture */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
-            <SculptureCard sculpture={sculptures[0]} variant="featured" />
-            <div className="flex flex-col justify-center">
-              <span className="text-[#D6A461] text-sm uppercase tracking-wider mb-3">
-                Capodopera Noastră
-              </span>
-              <h3 className="text-3xl font-bold mb-4 text-[#333333]">
-                {sculptures[0].title}
-              </h3>
-              <p className="text-[#666666] mb-8 leading-relaxed">
-                {sculptures[0].description}
-              </p>
-
-              <div className="grid grid-cols-2 gap-y-6 gap-x-4 mb-8">
-                {sculptures[0].features.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-[#D6A461] rounded-full"></div>
-                    <span className="text-[#666666]">{feature}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex items-center justify-between">
-                <span className="text-2xl font-light text-[#333333]">
-                  $<span className="font-bold">{sculptures[0].price}</span>
-                </span>
-                <button className="bg-[#333333] text-white py-2 px-6 rounded-sm font-medium flex items-center gap-2 hover:bg-[#222222] transition-colors">
-                  <span>Cere Ofertă</span>
-                  <Plus className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-          </div>
 
           {/* Gallery Grid */}
           <Gallery sculptures={sculptures.slice(1)} />
         </div>
       </section>
-
-      {/* Categories Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Categorii de Produse
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Descoperă gama noastră variată de produse din piatră naturală,
-              realizate cu pasiune și meșteșug.
-            </p>
-          </div>
-          <CategoriesGrid categories={categories} />
-        </div>
-      </section>
-
+      
       {/* About Us Section */}
       <section id="about" className="py-24 bg-[#F5F5F5]">
         <div className="container mx-auto px-6">
@@ -213,26 +163,12 @@ export default function Home() {
               în Piatră
             </h2>
             <p className="text-[#666666] leading-relaxed">
-              La ,,ELITPETRA'' realizăm lucrări din piatră naturală – monumente
+              La ELITPETRA realizăm lucrări din piatră naturală – monumente
               funerare, troițe, răstigniri și alte creații personalizate,
               conform dorințelor dumneavoastră. Cu o experiență de peste 10 ani
               în domeniu, oferim, de-asemenea, servicii complete de livrare și
               instalare, asigurând calitate.
             </p>
-          </div>
-
-          <div className="max-w-3xl mx-auto">
-            <div className="border-l-2 border-[#D6A461] pl-6 py-2">
-              <h3 className="text-2xl font-bold mb-4 text-[#333333]">
-                Meșteșug & Tradiție
-              </h3>
-              <p className="text-[#666666] leading-relaxed">
-                Combinăm meșteșugul tradițional cu tehnici moderne pentru a crea
-                piese atemporale. Fiecare sculptură este realizată meticulos de
-                către meșterii noștri în piatră, care aduc decenii de experiență
-                în fiecare proiect.
-              </p>
-            </div>
           </div>
         </div>
       </section>
