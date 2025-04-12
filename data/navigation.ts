@@ -2,19 +2,19 @@ import { NavigationItem } from "../types";
 
 export const navigationItems: NavigationItem[] = [
   {
-    label: "Home",
+    label: "Acasă",
     href: "/#home"
   },
   {
-    label: "Gallery",
+    label: "Galerie",
     href: "/#gallery"
   },
   {
-    label: "Services",
+    label: "Servicii",
     href: "/#services"
   },
   {
-    label: "About",
+    label: "Despre Noi",
     href: "/#about"
   },
   {

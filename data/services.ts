@@ -3,29 +3,29 @@ import { Service } from "../types";
 export const services: Service[] = [
   {
     id: "1",
-    title: "Custom Monuments",
-    description: "Personalized stone monuments crafted to your specifications, honoring your loved ones with unique and meaningful designs.",
+    title: "Monumente Personalizate",
+    description: "Monumente din piatră personalizate conform specificațiilor dumneavoastră, care onorează pe cei dragi cu designuri unice și pline de sens.",
     icon: "monument",
     link: "/services/custom-monuments"
   },
   {
     id: "2",
-    title: "Religious Sculptures",
-    description: "Sacred art pieces for churches, temples, and spiritual spaces, created with reverence and artistic excellence.",
+    title: "Sculpturi Religioase",
+    description: "Opere de artă sacră pentru biserici, temple și spații spirituale, create cu respect și excelență artistică.",
     icon: "sculpture",
     link: "/services/religious-sculptures"
   },
   {
     id: "3",
-    title: "Memorial Art",
-    description: "Artistic memorial pieces that celebrate life and create lasting tributes to your loved ones.",
+    title: "Artă Memorială",
+    description: "Piese artistice memoriale care sărbătoresc viața și creează omagii durabile pentru cei dragi.",
     icon: "art",
     link: "/services/memorial-art"
   },
   {
     id: "4",
-    title: "Stone Crosses",
-    description: "Traditional and modern stone crosses for memorials and religious spaces, available in various styles and materials.",
+    title: "Cruci din Piatră",
+    description: "Cruci tradiționale și moderne din piatră pentru memoriale și spații religioase, disponibile în diverse stiluri și materiale.",
     icon: "cross",
     link: "/services/stone-crosses"
   }

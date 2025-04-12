@@ -3,82 +3,82 @@ import { Sculpture } from "../types";
 export const sculptures: Sculpture[] = [
   {
     id: "1",
-    title: "Angel Memorial Statue",
-    description: "This exquisite angel statue represents our finest craftsmanship. Hand-carved from a single block of premium Italian marble, this piece combines classical techniques with modern sensibilities.",
+    title: "Statuie Memorială Înger",
+    description: "Această excepțională statuie de înger reprezintă cel mai bun meșteșug al nostru. Sculptată manual dintr-un singur bloc de marmură italiană premium, această piesă combină tehnici clasice cu sensibilități moderne.",
     price: 2400,
     imageUrl: "/placeholder.svg?height=600&width=500",
-    category: "Stone Memorials",
+    category: "Monumente din Piatră",
     features: [
-      "Premium Italian Marble",
-      "Hand-Carved Details",
-      "Weather-Resistant",
-      "Customizable Options"
+      "Marmură Italiană Premium",
+      "Detalii Sculptate Manual",
+      "Rezistentă la Intemperii",
+      "Opțiuni Personalizabile"
     ],
     dimensions: {
       height: 180,
       width: 60,
       depth: 60
     },
-    material: "Italian Marble"
+    material: "Marmură Italiană"
   },
   {
     id: "2",
-    title: "Custom Family Monument",
-    description: "Personalized design for your family, crafted with care and attention to detail.",
+    title: "Monument Familial Personalizat",
+    description: "Design personalizat pentru familia dumneavoastră, realizat cu grijă și atenție la detalii.",
     price: 3500,
     imageUrl: "/placeholder.svg?height=600&width=450",
-    category: "Custom Monuments",
+    category: "Monumente Personalizate",
     features: [
-      "Custom Design",
-      "Family Name Engraving",
-      "Weather-Resistant",
-      "Multiple Stone Options"
+      "Design Personalizat",
+      "Gravare Nume de Familie",
+      "Rezistent la Intemperii",
+      "Mai Multe Opțiuni de Piatră"
     ],
     dimensions: {
       height: 150,
       width: 100,
       depth: 30
     },
-    material: "Granite"
+    material: "Granit"
   },
   {
     id: "3",
-    title: "Religious Sculpture",
-    description: "Sacred art for spiritual spaces, created with reverence and artistic excellence.",
+    title: "Sculptură Religioasă",
+    description: "Artă sacră pentru spații spirituale, creată cu respect și excelență artistică.",
     price: 2800,
     imageUrl: "/placeholder.svg?height=600&width=450",
-    category: "Religious Sculptures",
+    category: "Sculpturi Religioase",
     features: [
-      "Traditional Design",
-      "Detailed Carving",
-      "Durable Materials",
-      "Custom Sizing"
+      "Design Tradițional",
+      "Sculptură Detaliată",
+      "Materiale Durabile",
+      "Dimensiuni Personalizabile"
     ],
     dimensions: {
       height: 200,
       width: 80,
       depth: 80
     },
-    material: "Marble"
+    material: "Marmură"
   },
   {
     id: "4",
-    title: "Stone Cross",
-    description: "Traditional and modern designs for memorials and religious spaces.",
+    title: "Cruce din Piatră",
+    description: "Designuri tradiționale și moderne pentru memoriale și spații religioase.",
     price: 1200,
     imageUrl: "/placeholder.svg?height=600&width=450",
-    category: "Stone Crosses",
+    category: "Cruci din Piatră",
     features: [
-      "Classic Design",
-      "Weather-Resistant",
-      "Multiple Size Options",
-      "Custom Engraving"
+      "Design Clasic",
+      "Rezistentă la Intemperii",
+      "Mai Multe Opțiuni de Dimensiuni",
+      "Gravare Personalizată"
     ],
     dimensions: {
       height: 180,
       width: 90,
       depth: 15
     },
-    material: "Granite"
+    material: "Granit"
   }
 ]; 

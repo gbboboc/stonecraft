@@ -7,14 +7,15 @@ export function Services() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <span className="inline-block text-[#D6A461] text-sm tracking-wider uppercase mb-3">
-            Our Services
+            Serviciile Noastre
           </span>
           <h2 className="text-3xl font-light text-[#333333] mb-4">
-            What We <span className="font-bold">Offer</span>
+            Ce <span className="font-bold">Oferim</span>
           </h2>
           <p className="text-[#666666] max-w-2xl mx-auto">
-            From custom monuments to religious sculptures, we offer a wide range
-            of services to meet your memorial and artistic needs.
+            De la monumente personalizate la sculpturi religioase, oferim o gamă
+            largă de servicii pentru a satisface nevoile dumneavoastră memoriale
+            și artistice.
           </p>
         </div>
 

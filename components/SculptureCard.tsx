@@ -51,7 +51,7 @@ export function SculptureCard({
       </h3>
       <p className="text-[#666666] mb-4">{sculpture.description}</p>
       <button className="text-[#D6A461] font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
-        <span>View Details</span>
+        <span>Vezi detalii</span>
         <ChevronRight className="h-4 w-4" />
       </button>
     </div>

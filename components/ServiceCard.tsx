@@ -21,7 +21,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
         href={service.link}
         className="inline-block text-[#D6A461] hover:text-[#333333] transition-colors"
       >
-        Learn More
+        Vezi detalii
         <span className="ml-2">→</span>
       </Link>
     </div>

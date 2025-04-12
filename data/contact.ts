@@ -1,8 +1,8 @@
 import { ContactInfo } from "../types";
 
 export const contactInfo: ContactInfo = {
-  address: "123 Stone Street, Artisan District, City",
-  phone: "+1 (555) 123-4567",
+  address: "Strada Piatră 123, Cartierul Artizanilor, Oraș",
+  phone: "+40 (555) 123-4567",
   email: "info@stonecraft.com",
   socialMedia: {
     facebook: "https://facebook.com/stonecraft",

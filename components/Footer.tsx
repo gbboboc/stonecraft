@@ -22,8 +22,8 @@ export function Footer({ contactInfo }: FooterProps) {
           <div>
             <h3 className="text-xl font-bold mb-6">StoneCraft</h3>
             <p className="text-white/70 mb-6">
-              Premium stone artistry and craftsmanship for monuments and
-              sculptures that stand the test of time.
+              Artă premium în piatră și meșteșug pentru monumente și sculpturi
+              care rezistă trecerii timpului.
             </p>
             <div className="flex space-x-4">
               <a
@@ -54,14 +54,14 @@ export function Footer({ contactInfo }: FooterProps) {
           </div>
 
           <div>
-            <h4 className="font-bold mb-6">Quick Links</h4>
+            <h4 className="font-bold mb-6">Link-uri Rapide</h4>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/"
                   className="text-white/70 hover:text-[#D6A461] transition-colors"
                 >
-                  Home
+                  Acasă
                 </Link>
               </li>
               <li>
@@ -69,7 +69,7 @@ export function Footer({ contactInfo }: FooterProps) {
                   href="/about"
                   className="text-white/70 hover:text-[#D6A461] transition-colors"
                 >
-                  About
+                  Despre Noi
                 </Link>
               </li>
               <li>
@@ -77,7 +77,7 @@ export function Footer({ contactInfo }: FooterProps) {
                   href="/gallery"
                   className="text-white/70 hover:text-[#D6A461] transition-colors"
                 >
-                  Gallery
+                  Galerie
                 </Link>
               </li>
               <li>
@@ -92,14 +92,14 @@ export function Footer({ contactInfo }: FooterProps) {
           </div>
 
           <div>
-            <h4 className="font-bold mb-6">Services</h4>
+            <h4 className="font-bold mb-6">Servicii</h4>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/services/custom-monuments"
                   className="text-white/70 hover:text-[#D6A461] transition-colors"
                 >
-                  Custom Monuments
+                  Monumente Personalizate
                 </Link>
               </li>
               <li>
@@ -107,7 +107,7 @@ export function Footer({ contactInfo }: FooterProps) {
                   href="/services/religious-sculptures"
                   className="text-white/70 hover:text-[#D6A461] transition-colors"
                 >
-                  Religious Sculptures
+                  Sculpturi Religioase
                 </Link>
               </li>
               <li>
@@ -115,7 +115,7 @@ export function Footer({ contactInfo }: FooterProps) {
                   href="/services/memorial-art"
                   className="text-white/70 hover:text-[#D6A461] transition-colors"
                 >
-                  Memorial Art
+                  Artă Memorială
                 </Link>
               </li>
               <li>
@@ -123,26 +123,26 @@ export function Footer({ contactInfo }: FooterProps) {
                   href="/services/stone-crosses"
                   className="text-white/70 hover:text-[#D6A461] transition-colors"
                 >
-                  Stone Crosses
+                  Cruci din Piatră
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold mb-6">Contact Us</h4>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-[#D6A461] mt-1" />
-                <span className="text-white/70">{contactInfo.address}</span>
-              </li>
+            <h4 className="font-bold mb-6">Contact</h4>
+            <ul className="space-y-3">
               <li className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-[#D6A461]" />
+                <Phone className="h-4 w-4 text-[#D6A461]" />
                 <span className="text-white/70">{contactInfo.phone}</span>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-[#D6A461]" />
+                <Mail className="h-4 w-4 text-[#D6A461]" />
                 <span className="text-white/70">{contactInfo.email}</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <MapPin className="h-4 w-4 text-[#D6A461]" />
+                <span className="text-white/70">{contactInfo.address}</span>
               </li>
             </ul>
           </div>

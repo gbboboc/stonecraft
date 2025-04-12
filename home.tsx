@@ -35,22 +35,21 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             <div>
               <span className="inline-block text-[#D6A461] text-sm tracking-wider uppercase mb-3">
-                Premium Stone Artistry
+                Artă Premium în Piatră
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight mb-6 text-[#333333]">
-                Timeless <span className="font-bold">Craftsmanship</span> in
-                Stone
+                Meșteșug <span className="font-bold">Etern</span> în Piatră
               </h1>
               <p className="text-lg text-[#666666] mb-10 max-w-lg leading-relaxed">
-                Where artistry meets emotion, creating monuments and sculptures
-                that stand the test of time.
+                Unde arta întâlnește emoția, creând monumente și sculpturi care
+                rezistă trecerii timpului.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button className="bg-[#333333] text-white px-8 py-3 rounded-sm font-medium hover:bg-[#222222] transition-colors">
-                  Explore Collection
+                  Explorează Colecția
                 </button>
                 <button className="border border-[#333333] text-[#333333] px-8 py-3 rounded-sm font-medium hover:bg-[#333333] hover:text-white transition-colors flex items-center justify-center gap-2">
-                  <span>Our Process</span>
+                  <span>Procesul Nostru</span>
                   <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
@@ -75,14 +74,14 @@ export default function Home() {
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-10 h-[2px] bg-[#D6A461]"></div>
                   <p className="text-sm font-medium text-[#333333]">
-                    Featured Work
+                    Lucrare Recomandată
                   </p>
                 </div>
                 <h3 className="text-lg font-bold mb-1 text-[#333333]">
-                  Angel Memorial
+                  Memorial Înger
                 </h3>
                 <p className="text-sm text-[#666666]">
-                  Hand-carved Italian marble
+                  Marmură italiană sculptată manual
                 </p>
               </div>
             </div>
@@ -100,16 +99,17 @@ export default function Home() {
               </div>
               <div>
                 <h3 className="text-xl font-light">
-                  Would you like a{" "}
-                  <span className="font-bold">free consultation</span>?
+                  Doriți o{" "}
+                  <span className="font-bold">consultație gratuită</span>?
                 </h3>
                 <p className="text-white/70 mt-1">
-                  Speak with our expert craftsmen about your memorial needs
+                  Discutați cu experții noștri despre nevoile dumneavoastră
+                  pentru un memorial
                 </p>
               </div>
             </div>
             <button className="whitespace-nowrap bg-[#D6A461] hover:bg-[#C89551] text-[#333333] font-medium py-3 px-8 rounded-sm transition-colors">
-              Schedule Now
+              Programează Acum
             </button>
           </div>
         </div>
@@ -123,15 +123,15 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <span className="inline-block text-[#D6A461] text-sm tracking-wider uppercase mb-3">
-              Our Collection
+              Ce Oferim
             </span>
             <h2 className="text-3xl font-light text-[#333333] mb-4">
-              Explore Our <span className="font-bold">Gallery</span>
+              Serviciile <span className="font-bold">Noastre</span>
             </h2>
             <p className="text-[#666666] max-w-2xl mx-auto">
-              Browse through our collection of handcrafted stone sculptures and
-              monuments. Each piece tells a unique story of craftsmanship and
-              dedication.
+              De la monumente personalizate la sculpturi religioase, oferim o
+              gamă largă de servicii pentru a satisface nevoile dumneavoastră
+              memoriale și artistice.
             </p>
           </div>
 
@@ -140,7 +140,7 @@ export default function Home() {
             <SculptureCard sculpture={sculptures[0]} variant="featured" />
             <div className="flex flex-col justify-center">
               <span className="text-[#D6A461] text-sm uppercase tracking-wider mb-3">
-                Our Masterpiece
+                Capodopera Noastră
               </span>
               <h3 className="text-3xl font-bold mb-4 text-[#333333]">
                 {sculptures[0].title}
@@ -163,7 +163,7 @@ export default function Home() {
                   $<span className="font-bold">{sculptures[0].price}</span>
                 </span>
                 <button className="bg-[#333333] text-white py-2 px-6 rounded-sm font-medium flex items-center gap-2 hover:bg-[#222222] transition-colors">
-                  <span>Request Quote</span>
+                  <span>Cere Ofertă</span>
                   <Plus className="h-4 w-4" />
                 </button>
               </div>
@@ -229,43 +229,63 @@ export default function Home() {
                 <div className="p-6 bg-white rounded-sm transition-transform hover:-translate-y-1 duration-300">
                   <div className="w-10 h-[2px] bg-[#D6A461] mb-4"></div>
                   <h3 className="font-bold text-lg mb-2 text-[#333333]">
-                    Master Craftsmanship
+                    Monumente Personalizate
                   </h3>
-                  <p className="text-[#666666]">
-                    Our sculptors have decades of experience working with stone
+                  <p className="text-[#666666] mb-4">
+                    Monumente din piatră personalizate conform specificațiilor
+                    dumneavoastră, care onorează pe cei dragi cu designuri unice
+                    și pline de sens.
                   </p>
+                  <button className="text-[#D6A461] font-medium flex items-center gap-2 hover:gap-3 transition-all">
+                    <span>Află Mai Multe</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
                 </div>
 
                 <div className="p-6 bg-white rounded-sm transition-transform hover:-translate-y-1 duration-300">
                   <div className="w-10 h-[2px] bg-[#D6A461] mb-4"></div>
                   <h3 className="font-bold text-lg mb-2 text-[#333333]">
-                    Premium Materials
+                    Sculpturi Religioase
                   </h3>
-                  <p className="text-[#666666]">
-                    We source the finest stone from quarries around the world
+                  <p className="text-[#666666] mb-4">
+                    Opere de artă sacră pentru biserici, temple și spații
+                    spirituale, create cu respect și excelență artistică.
                   </p>
+                  <button className="text-[#D6A461] font-medium flex items-center gap-2 hover:gap-3 transition-all">
+                    <span>Află Mai Multe</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
                 </div>
 
                 <div className="p-6 bg-white rounded-sm transition-transform hover:-translate-y-1 duration-300">
                   <div className="w-10 h-[2px] bg-[#D6A461] mb-4"></div>
                   <h3 className="font-bold text-lg mb-2 text-[#333333]">
-                    Custom Designs
+                    Artă Memorială
                   </h3>
-                  <p className="text-[#666666]">
-                    We work closely with clients to create personalized
-                    monuments
+                  <p className="text-[#666666] mb-4">
+                    Piese artistice memoriale care sărbătoresc viața și creează
+                    omagii durabile pentru cei dragi.
                   </p>
+                  <button className="text-[#D6A461] font-medium flex items-center gap-2 hover:gap-3 transition-all">
+                    <span>Află Mai Multe</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
                 </div>
 
                 <div className="p-6 bg-white rounded-sm transition-transform hover:-translate-y-1 duration-300">
                   <div className="w-10 h-[2px] bg-[#D6A461] mb-4"></div>
                   <h3 className="font-bold text-lg mb-2 text-[#333333]">
-                    Crafted with Care
+                    Cruci din Piatră
                   </h3>
-                  <p className="text-[#666666]">
-                    Every piece receives our full attention and artistic
-                    dedication
+                  <p className="text-[#666666] mb-4">
+                    Cruci tradiționale și moderne din piatră pentru memoriale și
+                    spații religioase, disponibile în diverse stiluri și
+                    materiale.
                   </p>
+                  <button className="text-[#D6A461] font-medium flex items-center gap-2 hover:gap-3 transition-all">
+                    <span>Află Mai Multe</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
                 </div>
               </div>
             </div>
