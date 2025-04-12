@@ -25,6 +25,8 @@ import CategoriesGrid from "./components/CategoriesGrid";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentSculptureIndex, setCurrentSculptureIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,11 +37,27 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentSculptureIndex((prevIndex) =>
+          prevIndex === sculptures.length - 1 ? 0 : prevIndex + 1
+        );
+        setIsTransitioning(false);
+      }, 500); // Half of the transition duration
+    }, 6000); // Change every 6 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const currentSculpture = sculptures[currentSculptureIndex];
+
   return (
     <div className="min-h-screen bg-[#FAFAFA]">
       <Navigation items={navigationItems} isScrolled={isScrolled} />
 
-      {/* Hero Section - Minimalist and Elegant */}
+      {/* Hero Section - Rotating Sculpture Gallery */}
       <section id="home" className="py-20 md:py-28 lg:py-32 overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
@@ -70,28 +88,38 @@ export default function Home() {
               <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#F5F5F5] rounded-full -z-10"></div>
 
               <div className="relative h-[500px] rounded-sm overflow-hidden shadow-lg">
-                <Image
-                  src="/placeholder.svg?height=600&width=500"
-                  alt="Premium stone sculpture"
-                  fill
-                  priority
-                  className="object-cover"
-                />
+                <div
+                  className={`absolute inset-0 transition-opacity duration-1000 ${
+                    isTransitioning ? "opacity-0" : "opacity-100"
+                  }`}
+                >
+                  <Image
+                    src={currentSculpture.imageUrl}
+                    alt={currentSculpture.title}
+                    fill
+                    priority
+                    className="object-cover"
+                  />
+                </div>
               </div>
 
               {/* Floating info card */}
-              <div className="absolute -bottom-6 -left-6 bg-white p-5 rounded-sm shadow-md max-w-xs">
+              <div
+                className={`absolute -bottom-6 -left-6 bg-white p-5 rounded-sm shadow-md max-w-xs transition-opacity duration-1000 ${
+                  isTransitioning ? "opacity-0" : "opacity-100"
+                }`}
+              >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-10 h-[2px] bg-[#D6A461]"></div>
                   <p className="text-sm font-medium text-[#333333]">
-                    Lucrare Recomandată
+                    {currentSculpture.category}
                   </p>
                 </div>
                 <h3 className="text-lg font-bold mb-1 text-[#333333]">
-                  Memorial Înger
+                  {currentSculpture.title}
                 </h3>
                 <p className="text-sm text-[#666666]">
-                  Marmură italiană sculptată manual
+                  {currentSculpture.material}
                 </p>
               </div>
             </div>
@@ -145,12 +173,11 @@ export default function Home() {
             </p>
           </div>
 
-
           {/* Gallery Grid */}
           <Gallery sculptures={sculptures.slice(1)} />
         </div>
       </section>
-      
+
       {/* About Us Section */}
       <section id="about" className="py-24 bg-[#F5F5F5]">
         <div className="container mx-auto px-6">

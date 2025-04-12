@@ -5,12 +5,10 @@ export const sculptures: Sculpture[] = [
   {
     id: "1",
     title: "Statuie Memorială Înger",
-    description: "Această excepțională statuie de înger reprezintă cel mai bun meșteșug al nostru. Sculptată manual dintr-un singur bloc de marmură italiană premium, această piesă combină tehnici clasice cu sensibilități moderne.",
-    price: 2400,
+    description: "Această excepțională statuie de înger reprezintă cel mai bun meșteșug al nostru. Sculptată manual dintr-un singur bloc de granit, această piesă combină tehnici clasice cu sensibilități moderne.",
     imageUrl: "/monuments/monument-1.jpg",
     category: "Monumente din Piatră",
     features: [
-      "Marmură Italiană Premium",
       "Detalii Sculptate Manual",
       "Rezistentă la Intemperii",
       "Opțiuni Personalizabile"
@@ -20,18 +18,15 @@ export const sculptures: Sculpture[] = [
       width: 60,
       depth: 60
     },
-    material: "Marmură Italiană"
+    material: "Granit"
   },
   {
     id: "2",
-    title: "Monument Familial Personalizat",
-    description: "Design personalizat pentru familia dumneavoastră, realizat cu grijă și atenție la detalii.",
-    price: 3500,
+    title: "Monument Funerar",
+    description: "",
     imageUrl: "/monuments/monument-2.jpg",
     category: "Monumente din Piatră",
     features: [
-      "Design Personalizat",
-      "Gravare Nume de Familie",
       "Rezistent la Intemperii",
       "Mai Multe Opțiuni de Piatră"
     ],
@@ -40,19 +35,17 @@ export const sculptures: Sculpture[] = [
       width: 100,
       depth: 30
     },
-    material: "Granit"
+    material: "Piatră"
   },
   {
     id: "3",
-    title: "Monument Clasic",
-    description: "Design clasic și elegant pentru memoriale tradiționale.",
-    price: 2800,
+    title: "Monument",
+    description: "Monument pentru memoriale tradiționale.",
     imageUrl: "/monuments/monument-3.jpg",
     category: "Monumente din Piatră",
     features: [
       "Design Tradițional",
       "Rezistent la Intemperii",
-      "Materiale Premium",
       "Finisaj Impecabil"
     ],
     dimensions: {
@@ -60,13 +53,12 @@ export const sculptures: Sculpture[] = [
       width: 80,
       depth: 40
     },
-    material: "Marmură"
+    material: "Granit"
   },
   {
     id: "4",
-    title: "Monument Modern",
-    description: "Design contemporan pentru memoriale moderne.",
-    price: 3200,
+    title: "Monument Funerar",
+    description: "Monument pentru memoriale tradiționale.",
     imageUrl: "/monuments/monument-4.jpg",
     category: "Monumente din Piatră",
     features: [
@@ -80,7 +72,7 @@ export const sculptures: Sculpture[] = [
       width: 70,
       depth: 50
     },
-    material: "Granit"
+    material: "Piatră"
   },
 
   // Sculpturi
@@ -88,7 +80,6 @@ export const sculptures: Sculpture[] = [
     id: "5",
     title: "Sculptură Religioasă",
     description: "Artă sacră pentru spații spirituale, creată cu respect și excelență artistică.",
-    price: 2800,
     imageUrl: "/sculptures/sculpture-1.jpg",
     category: "Sculpturi",
     features: [
@@ -102,13 +93,12 @@ export const sculptures: Sculpture[] = [
       width: 80,
       depth: 80
     },
-    material: "Marmură"
+    material: "Granit"
   },
   {
     id: "6",
-    title: "Sculptură Artistică",
+    title: "Sculptură Religioasă",
     description: "Operă de artă unică, creată cu pasiune și măiestrie.",
-    price: 3500,
     imageUrl: "/sculptures/sculpture-2.jpg",
     category: "Sculpturi",
     features: [
@@ -122,13 +112,12 @@ export const sculptures: Sculpture[] = [
       width: 70,
       depth: 70
     },
-    material: "Marmură Italiană"
+    material: "Granit"
   },
   {
     id: "7",
-    title: "Sculptură Decorativă",
+    title: "Sculptură Religioasă",
     description: "Element decorativ pentru spații interioare și exterioare.",
-    price: 2200,
     imageUrl: "/sculptures/sculpture-3.jpg",
     category: "Sculpturi",
     features: [
@@ -148,7 +137,6 @@ export const sculptures: Sculpture[] = [
     id: "8",
     title: "Sculptură Memorială",
     description: "Piesă memorială cu semnificație profundă.",
-    price: 3000,
     imageUrl: "/sculptures/sculpture-4.jpg",
     category: "Sculpturi",
     features: [
@@ -162,15 +150,14 @@ export const sculptures: Sculpture[] = [
       width: 75,
       depth: 75
     },
-    material: "Marmură"
+    material: "Granit"
   },
 
   // Cruci din Piatră
   {
     id: "9",
-    title: "Cruce Tradițională",
-    description: "Cruce clasică din piatră pentru memoriale.",
-    price: 1200,
+    title: "Troițe",
+    description: "Troițe tradiționale din piatră pentru memoriale.",
     imageUrl: "/cross/cross-1.jpg",
     category: "Cruci din Piatră",
     features: [
@@ -188,9 +175,8 @@ export const sculptures: Sculpture[] = [
   },
   {
     id: "10",
-    title: "Cruce Modernă",
-    description: "Design contemporan pentru cruci memoriale.",
-    price: 1500,
+    title: "Troițe",
+    description: "Troițe tradiționale din piatră pentru memoriale.",
     imageUrl: "/cross/cross-2.jpg",
     category: "Cruci din Piatră",
     features: [
@@ -204,13 +190,12 @@ export const sculptures: Sculpture[] = [
       width: 100,
       depth: 20
     },
-    material: "Marmură"
+    material: "Piatră"
   },
   {
     id: "11",
-    title: "Cruce Artistică",
-    description: "Cruce cu elemente artistice și decorative.",
-    price: 1800,
+    title: "Troițe",
+    description: "Troițe tradiționale din piatră pentru memoriale.",
     imageUrl: "/cross/cross-3.jpg",
     category: "Cruci din Piatră",
     features: [
@@ -228,9 +213,8 @@ export const sculptures: Sculpture[] = [
   },
   {
     id: "12",
-    title: "Cruce Memorială",
-    description: "Cruce pentru memoriale cu design personalizat.",
-    price: 1600,
+    title: "Troițe",
+    description: "Troițe tradiționale din piatră pentru memoriale.",
     imageUrl: "/cross/cross-4.jpg",
     category: "Cruci din Piatră",
     features: [
@@ -244,13 +228,12 @@ export const sculptures: Sculpture[] = [
       width: 92,
       depth: 17
     },
-    material: "Marmură"
+    material: "Piatră"
   },
   {
     id: "13",
-    title: "Cruce Clasică",
-    description: "Cruce tradițională cu design clasic.",
-    price: 1400,
+    title: "Troițe",
+    description: "Troițe tradiționale din piatră pentru memoriale.",
     imageUrl: "/cross/cross-5.jpg",
     category: "Cruci din Piatră",
     features: [
@@ -272,7 +255,6 @@ export const sculptures: Sculpture[] = [
     id: "14",
     title: "Element Decorativ",
     description: "Element decorativ din piatră pentru spații interioare și exterioare.",
-    price: 800,
     imageUrl: "/other-pictures/other-1.jpg",
     category: "Altele",
     features: [
@@ -286,13 +268,12 @@ export const sculptures: Sculpture[] = [
       width: 50,
       depth: 50
     },
-    material: "Marmură"
+    material: "Granit"
   },
   {
     id: "15",
     title: "Piesă Artistică",
     description: "Piesă artistică unică din piatră naturală.",
-    price: 1200,
     imageUrl: "/other-pictures/other-2.jpg",
     category: "Altele",
     features: [
@@ -310,9 +291,8 @@ export const sculptures: Sculpture[] = [
   },
   {
     id: "16",
-    title: "Element Memorial",
-    description: "Element memorial personalizat pentru spații speciale.",
-    price: 1500,
+    title: "Element Decorativ",
+    description: "Element decorativ din piatră pentru spații interioare și exterioare.",
     imageUrl: "/other-pictures/other-3.jpg",
     category: "Altele",
     features: [
@@ -326,13 +306,12 @@ export const sculptures: Sculpture[] = [
       width: 65,
       depth: 65
     },
-    material: "Marmură"
+    material: "Granit"
   },
   {
     id: "17",
     title: "Piesă Decorativă",
     description: "Piesă decorativă pentru completarea spațiilor.",
-    price: 900,
     imageUrl: "/other-pictures/other-4.jpg",
     category: "Altele",
     features: [

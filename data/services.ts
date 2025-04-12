@@ -3,7 +3,7 @@ import { Service } from "../types";
 export const services: Service[] = [
   {
     id: "1",
-    title: "Monumente Personalizate",
+    title: "Monument Funerar",
     description: "Monumente din piatră personalizate conform specificațiilor dumneavoastră, care onorează pe cei dragi cu designuri unice și pline de sens.",
     icon: "monument",
     link: "/services/custom-monuments"

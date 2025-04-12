@@ -10,7 +10,6 @@ export interface Sculpture {
   id: string;
   title: string;
   description: string;
-  price: number;
   imageUrl: string;
   category: string;
   features: string[];
