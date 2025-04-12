@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Search, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { NavigationItem } from "../types";
 import { scrollToSection } from "../utils/scroll";
 
@@ -31,7 +31,7 @@ export function Navigation({ items, isScrolled }: NavigationProps) {
             onClick={(e) => handleNavClick(e, "/#home")}
             className="text-2xl font-bold text-[#333333]"
           >
-            StoneCraft
+            ELITPETRA
           </Link>
 
           <nav className="hidden md:flex items-center space-x-8">
@@ -47,10 +47,7 @@ export function Navigation({ items, isScrolled }: NavigationProps) {
             ))}
           </nav>
 
-          <div className="flex items-center space-x-4">
-            <button className="p-2 hover:bg-[#F5F5F5] rounded-sm transition-colors">
-              <Search className="w-5 h-5 text-[#666666]" />
-            </button>
+          <div className="flex items-center">
             <button className="p-2 hover:bg-[#F5F5F5] rounded-sm transition-colors md:hidden">
               <Menu className="w-5 h-5 text-[#666666]" />
             </button>

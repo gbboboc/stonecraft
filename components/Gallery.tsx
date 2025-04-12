@@ -45,11 +45,11 @@ export function Gallery({ sculptures }: GalleryProps) {
           <div
             key={sculpture.id}
             className="mb-8 break-inside-avoid relative group cursor-pointer"
-            onClick={() => setSelectedImage(sculpture.image)}
+            onClick={() => setSelectedImage(sculpture.imageUrl)}
           >
             <div className="relative h-[400px] rounded-sm overflow-hidden">
               <Image
-                src={sculpture.image}
+                src={sculpture.imageUrl}
                 alt={sculpture.title}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"

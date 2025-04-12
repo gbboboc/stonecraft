@@ -2,6 +2,17 @@ import { ServiceCard } from "./ServiceCard";
 import { services } from "../data/services";
 
 export function Services() {
+  const allServices = [
+    ...services,
+    {
+      id: "5",
+      title: "Livrare & Instalare",
+      description:
+        "Oferim servicii complete de livrare și instalare pentru toate lucrările noastre. Echipa noastră de specialiști se asigură că fiecare piesă este transportată și instalată cu grijă și profesionalism.",
+      link: "/services/delivery-installation",
+    },
+  ];
+
   return (
     <section id="services" className="py-24 bg-[#F5F5F5]">
       <div className="container mx-auto px-6">
@@ -20,8 +31,8 @@ export function Services() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {allServices.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}
         </div>

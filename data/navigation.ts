@@ -6,12 +6,12 @@ export const navigationItems: NavigationItem[] = [
     href: "/#home"
   },
   {
-    label: "Galerie",
-    href: "/#gallery"
-  },
-  {
     label: "Servicii",
     href: "/#services"
+  },
+  {
+    label: "Galerie",
+    href: "/#gallery"
   },
   {
     label: "Despre Noi",

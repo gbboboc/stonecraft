@@ -9,18 +9,27 @@ import {
   MapPin,
 } from "lucide-react";
 import { ContactInfo } from "../types";
+import { scrollToSection } from "../utils/scroll";
 
 interface FooterProps {
   contactInfo: ContactInfo;
 }
 
 export function Footer({ contactInfo }: FooterProps) {
+  const handleClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    sectionId: string
+  ) => {
+    e.preventDefault();
+    scrollToSection(sectionId);
+  };
+
   return (
     <footer className="bg-[#333333] text-white py-16">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div>
-            <h3 className="text-xl font-bold mb-6">StoneCraft</h3>
+            <h3 className="text-xl font-bold mb-6">ELITPETRA</h3>
             <p className="text-white/70 mb-6">
               Artă premium în piatră și meșteșug pentru monumente și sculpturi
               care rezistă trecerii timpului.
@@ -28,24 +37,32 @@ export function Footer({ contactInfo }: FooterProps) {
             <div className="flex space-x-4">
               <a
                 href={contactInfo.socialMedia.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white/70 hover:text-[#D6A461] transition-colors"
               >
                 <Facebook className="h-5 w-5" />
               </a>
               <a
                 href={contactInfo.socialMedia.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white/70 hover:text-[#D6A461] transition-colors"
               >
                 <Twitter className="h-5 w-5" />
               </a>
               <a
                 href={contactInfo.socialMedia.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white/70 hover:text-[#D6A461] transition-colors"
               >
                 <Instagram className="h-5 w-5" />
               </a>
               <a
                 href={contactInfo.socialMedia.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white/70 hover:text-[#D6A461] transition-colors"
               >
                 <Linkedin className="h-5 w-5" />
@@ -57,36 +74,40 @@ export function Footer({ contactInfo }: FooterProps) {
             <h4 className="font-bold mb-6">Link-uri Rapide</h4>
             <ul className="space-y-3">
               <li>
-                <Link
-                  href="/"
-                  className="text-white/70 hover:text-[#D6A461] transition-colors"
+                <a
+                  href="#home"
+                  onClick={(e) => handleClick(e, "home")}
+                  className="text-white/70 hover:text-[#D6A461] transition-colors cursor-pointer"
                 >
                   Acasă
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  href="/about"
-                  className="text-white/70 hover:text-[#D6A461] transition-colors"
+                <a
+                  href="#about"
+                  onClick={(e) => handleClick(e, "about")}
+                  className="text-white/70 hover:text-[#D6A461] transition-colors cursor-pointer"
                 >
                   Despre Noi
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  href="/gallery"
-                  className="text-white/70 hover:text-[#D6A461] transition-colors"
+                <a
+                  href="#gallery"
+                  onClick={(e) => handleClick(e, "gallery")}
+                  className="text-white/70 hover:text-[#D6A461] transition-colors cursor-pointer"
                 >
                   Galerie
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  href="/contact"
-                  className="text-white/70 hover:text-[#D6A461] transition-colors"
+                <a
+                  href="#contact"
+                  onClick={(e) => handleClick(e, "contact")}
+                  className="text-white/70 hover:text-[#D6A461] transition-colors cursor-pointer"
                 >
                   Contact
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -95,36 +116,40 @@ export function Footer({ contactInfo }: FooterProps) {
             <h4 className="font-bold mb-6">Servicii</h4>
             <ul className="space-y-3">
               <li>
-                <Link
-                  href="/services/custom-monuments"
-                  className="text-white/70 hover:text-[#D6A461] transition-colors"
+                <a
+                  href="#services"
+                  onClick={(e) => handleClick(e, "services")}
+                  className="text-white/70 hover:text-[#D6A461] transition-colors cursor-pointer"
                 >
                   Monumente Personalizate
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  href="/services/religious-sculptures"
-                  className="text-white/70 hover:text-[#D6A461] transition-colors"
+                <a
+                  href="#services"
+                  onClick={(e) => handleClick(e, "services")}
+                  className="text-white/70 hover:text-[#D6A461] transition-colors cursor-pointer"
                 >
                   Sculpturi Religioase
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  href="/services/memorial-art"
-                  className="text-white/70 hover:text-[#D6A461] transition-colors"
+                <a
+                  href="#services"
+                  onClick={(e) => handleClick(e, "services")}
+                  className="text-white/70 hover:text-[#D6A461] transition-colors cursor-pointer"
                 >
                   Artă Memorială
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  href="/services/stone-crosses"
-                  className="text-white/70 hover:text-[#D6A461] transition-colors"
+                <a
+                  href="#services"
+                  onClick={(e) => handleClick(e, "services")}
+                  className="text-white/70 hover:text-[#D6A461] transition-colors cursor-pointer"
                 >
                   Cruci din Piatră
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -149,7 +174,7 @@ export function Footer({ contactInfo }: FooterProps) {
         </div>
 
         <div className="border-t border-white/10 mt-12 pt-8 text-center text-white/50 text-sm">
-          <p>© 2024 StoneCraft. All rights reserved.</p>
+          <p>© 2024 ELITPETRA. All rights reserved.</p>
         </div>
       </div>
     </footer>
