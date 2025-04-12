@@ -78,22 +78,22 @@ export const sculptures: Sculpture[] = [
   // Sculpturi
   {
     id: "5",
-    title: "Sculptură Religioasă",
-    description: "Artă sacră pentru spații spirituale, creată cu respect și excelență artistică.",
-    imageUrl: "/sculptures/sculpture-1.jpg",
+    title: "Sculptură Modernă Abstractă",
+    description: "O piesă contemporană care combină forme abstracte cu elemente tradiționale, creată pentru a adăuga un accent artistic modern în orice spațiu.",
+    imageUrl: "/sculptures/sculpture-5.jpg",
     category: "Sculpturi",
     features: [
-      "Design Tradițional",
-      "Sculptură Detaliată",
-      "Materiale Durabile",
-      "Dimensiuni Personalizabile"
+      "Design Modern",
+      "Forme Abstracte",
+      "Materiale Premium",
+      "Versatilitate"
     ],
     dimensions: {
-      height: 200,
-      width: 80,
-      depth: 80
+      height: 180,
+      width: 70,
+      depth: 70
     },
-    material: "Granit"
+    material: "Piatră"
   },
   {
     id: "6",
@@ -230,25 +230,7 @@ export const sculptures: Sculpture[] = [
     },
     material: "Piatră"
   },
-  {
-    id: "13",
-    title: "Troițe",
-    description: "Troițe tradiționale din piatră pentru memoriale.",
-    imageUrl: "/cross/cross-5.jpg",
-    category: "Cruci din Piatră",
-    features: [
-      "Design Tradițional",
-      "Rezistență",
-      "Gravare Clasică",
-      "Finisaj Premium"
-    ],
-    dimensions: {
-      height: 195,
-      width: 98,
-      depth: 16
-    },
-    material: "Granit"
-  },
+  
 
   // Altele
   {

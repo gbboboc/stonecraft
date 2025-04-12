@@ -39,4 +39,9 @@ export interface Service {
   description: string;
   icon: string;
   link: string;
+}
+
+export interface NavigationItem {
+  label: string;
+  href: string;
 } 
