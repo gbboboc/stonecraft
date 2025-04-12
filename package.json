@@ -9,8 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.0.0",
-    "@aws-sdk/s3-request-presigner": "^3.0.0",
     "@hookform/resolvers": "^3.9.1",
     "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-alert-dialog": "^1.1.4",
@@ -64,7 +62,6 @@
   },
   "devDependencies": {
     "@prisma/client": "^6.6.0",
-    "@types/aws-sdk": "^2.7.4",
     "@types/node": "^22.14.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
