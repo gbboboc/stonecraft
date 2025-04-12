@@ -1,25 +1,56 @@
 import Image from "next/image";
 import { ChevronRight, Plus } from "lucide-react";
 import { Sculpture } from "../types";
+import { ImageUploader } from "./ImageUploader";
+import { useState } from "react";
 
 interface SculptureCardProps {
   sculpture: Sculpture;
   variant?: "default" | "featured";
+  isAdmin?: boolean;
+  onImageUpdate?: (imageUrl: string) => void;
 }
 
 export function SculptureCard({
   sculpture,
   variant = "default",
+  isAdmin = false,
+  onImageUpdate,
 }: SculptureCardProps) {
+  const [imageError, setImageError] = useState(false);
+
+  const handleImageError = () => {
+    setImageError(true);
+    console.error("Failed to load image:", sculpture.imageUrl);
+  };
+
   if (variant === "featured") {
     return (
       <div className="relative h-[500px] rounded-sm overflow-hidden">
-        <Image
-          src={sculpture.imageUrl}
-          alt={sculpture.title}
-          fill
-          className="object-cover"
-        />
+        {!imageError ? (
+          <Image
+            src={sculpture.imageUrl}
+            alt={sculpture.title}
+            fill
+            className="object-cover"
+            onError={handleImageError}
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+            <span className="text-gray-500">Image not available</span>
+          </div>
+        )}
+        {isAdmin && (
+          <div className="absolute top-4 right-4 z-10">
+            <ImageUploader
+              sculptureId={sculpture.id}
+              onUploadComplete={(newImageUrl) => {
+                setImageError(false);
+                onImageUpdate?.(newImageUrl);
+              }}
+            />
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8">
           <span className="text-white/80 text-sm uppercase tracking-wider mb-2">
             Featured Work
@@ -39,12 +70,30 @@ export function SculptureCard({
   return (
     <div className="group">
       <div className="relative aspect-[3/4] rounded-sm overflow-hidden mb-4">
-        <Image
-          src={sculpture.imageUrl}
-          alt={sculpture.title}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-        />
+        {!imageError ? (
+          <Image
+            src={sculpture.imageUrl}
+            alt={sculpture.title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            onError={handleImageError}
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+            <span className="text-gray-500">Image not available</span>
+          </div>
+        )}
+        {isAdmin && (
+          <div className="absolute top-4 right-4 z-10">
+            <ImageUploader
+              sculptureId={sculpture.id}
+              onUploadComplete={(newImageUrl) => {
+                setImageError(false);
+                onImageUpdate?.(newImageUrl);
+              }}
+            />
+          </div>
+        )}
       </div>
       <h3 className="text-lg font-bold mb-2 text-[#333333]">
         {sculpture.title}

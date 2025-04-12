@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
-import { Sculpture } from "../data/sculptures";
+import { Sculpture } from "../types";
+import { sculptures } from "../data/sculptures";
 
 interface GalleryProps {
   sculptures: Sculpture[];
@@ -39,25 +40,26 @@ export function Gallery({ sculptures }: GalleryProps) {
         ))}
       </div>
 
-      {/* Masonry Grid */}
-      <div className="columns-1 md:columns-2 lg:columns-3 gap-8">
+      {/* Grid Layout */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {filteredSculptures.map((sculpture) => (
           <div
             key={sculpture.id}
-            className="mb-8 break-inside-avoid relative group cursor-pointer"
+            className="group cursor-pointer"
             onClick={() => setSelectedImage(sculpture.imageUrl)}
           >
-            <div className="relative h-[400px] rounded-sm overflow-hidden">
+            <div className="relative aspect-[3/4] rounded-sm overflow-hidden mb-4">
               <Image
                 src={sculpture.imageUrl}
                 alt={sculpture.title}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
             </div>
-            <div className="mt-4">
-              <h3 className="font-bold text-lg text-[#333333] mb-1">
+            <div>
+              <h3 className="font-bold text-lg text-[#333333] mb-1 line-clamp-1">
                 {sculpture.title}
               </h3>
               <p className="text-sm text-[#666666]">{sculpture.category}</p>
@@ -90,6 +92,7 @@ export function Gallery({ sculptures }: GalleryProps) {
               alt="Selected sculpture"
               fill
               className="object-contain"
+              sizes="100vw"
             />
           </div>
         </div>
