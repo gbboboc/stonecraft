@@ -3,7 +3,15 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Calendar, Plus, Phone, Mail, MapPin } from "lucide-react";
+import {
+  ArrowRight,
+  Calendar,
+  Plus,
+  Phone,
+  Mail,
+  MapPin,
+  ChevronRight,
+} from "lucide-react";
 import { Navigation } from "./components/Navigation";
 import { SculptureCard } from "./components/SculptureCard";
 import { Gallery } from "./components/Gallery";
@@ -12,6 +20,8 @@ import { Footer } from "./components/Footer";
 import { navigationItems } from "./data/navigation";
 import { sculptures } from "./data/sculptures";
 import { contactInfo } from "./data/contact";
+import { categories } from "./data/categories";
+import CategoriesGrid from "./components/CategoriesGrid";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -172,6 +182,22 @@ export default function Home() {
 
           {/* Gallery Grid */}
           <Gallery sculptures={sculptures.slice(1)} />
+        </div>
+      </section>
+
+      {/* Categories Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Categorii de Produse
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Descoperă gama noastră variată de produse din piatră naturală,
+              realizate cu pasiune și meșteșug.
+            </p>
+          </div>
+          <CategoriesGrid categories={categories} />
         </div>
       </section>
 
