@@ -87,7 +87,7 @@ export default function Home() {
               <div className="absolute -top-10 -right-10 w-64 h-64 bg-[#F5F5F5] rounded-full -z-10"></div>
               <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#F5F5F5] rounded-full -z-10"></div>
 
-              <div className="relative h-[500px] rounded-sm overflow-hidden shadow-lg">
+              <div className="relative h-[600px] rounded-sm overflow-hidden shadow-lg">
                 <div
                   className={`absolute inset-0 transition-opacity duration-1000 ${
                     isTransitioning ? "opacity-0" : "opacity-100"

@@ -4,8 +4,8 @@ export const sculptures: Sculpture[] = [
   // Monumente din Piatră
   {
     id: "1",
-    title: "Statuie Memorială Înger",
-    description: "Această excepțională statuie de înger reprezintă cel mai bun meșteșug al nostru. Sculptată manual dintr-un singur bloc de granit, această piesă combină tehnici clasice cu sensibilități moderne.",
+    title: "Monument Funerar",
+    description: "Monument pentru memoriale tradiționale.",
     imageUrl: "/monuments/monument-1.jpg",
     category: "Monumente din Piatră",
     features: [
