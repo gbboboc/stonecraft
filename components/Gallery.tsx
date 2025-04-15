@@ -3,13 +3,7 @@ import Image from "next/image";
 import { X } from "lucide-react";
 import { useImages } from "../hooks/useImages";
 
-const CATEGORIES = [
-  "Toate",
-  "sculptures",
-  "cross",
-  "monuments",
-  "other-pictures",
-];
+const CATEGORIES = ["Toate", "Sculpturi", "Troițe", "Monumente", "Altele"];
 
 export function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState<string>("Toate");
