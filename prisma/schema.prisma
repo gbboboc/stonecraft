@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,13 +8,13 @@ datasource db {
 }
 
 model Category {
-  id          String   @id @default(cuid())
+  id          String      @id @default(cuid())
   name        String
   description String
-  slug        String   @unique
+  slug        String      @unique
   imageUrl    String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
   sculptures  Sculpture[]
 }
 
@@ -28,10 +25,18 @@ model Sculpture {
   price       Float
   imageUrl    String
   categoryId  String
-  category    Category @relation(fields: [categoryId], references: [id])
   features    String[]
   dimensions  Json
   material    String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-} 
+  category    Category @relation(fields: [categoryId], references: [id])
+}
+
+model Uploads {
+  id        Int       @id @default(autoincrement())
+  imageData Json      @map("image_data") @db.Json
+  createdAt DateTime? @default(now()) @map("created_at") @db.Timestamp(6)
+
+  @@map("uploads")
+}

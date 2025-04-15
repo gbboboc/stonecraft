@@ -9,7 +9,7 @@ import {
   MapPin,
 } from "lucide-react";
 import { ContactInfo } from "../types";
-import { scrollToSection } from "../utils/scroll";
+import { scrollToSection } from "../public/uploads/utils/scroll";
 
 interface FooterProps {
   contactInfo: ContactInfo;

@@ -1,31 +1,45 @@
 import { useState } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
-import { Sculpture } from "../types";
-import { sculptures } from "../data/sculptures";
+import { useImages } from "../hooks/useImages";
 
-interface GalleryProps {
-  sculptures: Sculpture[];
-}
+const CATEGORIES = [
+  "Toate",
+  "sculptures",
+  "cross",
+  "monuments",
+  "other-pictures",
+];
 
-export function Gallery({ sculptures }: GalleryProps) {
+export function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState<string>("Toate");
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  // Get unique categories
-  const categories = ["Toate", ...new Set(sculptures.map((s) => s.category))];
+  const { images, loading, error } = useImages(
+    selectedCategory === "Toate" ? undefined : selectedCategory
+  );
 
-  // Filter sculptures based on selected category
-  const filteredSculptures =
-    selectedCategory === "Toate"
-      ? sculptures
-      : sculptures.filter((s) => s.category === selectedCategory);
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#D6A461]"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center text-red-500 py-8">
+        <p>Error loading images: {error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="relative">
       {/* Category Filter */}
       <div className="flex flex-wrap justify-center gap-4 mb-12">
-        {categories.map((category) => (
+        {CATEGORIES.map((category) => (
           <button
             key={category}
             onClick={() => setSelectedCategory(category)}
@@ -42,16 +56,16 @@ export function Gallery({ sculptures }: GalleryProps) {
 
       {/* Grid Layout */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        {filteredSculptures.map((sculpture) => (
+        {images.map((image) => (
           <div
-            key={sculpture.id}
+            key={image.id}
             className="group cursor-pointer"
-            onClick={() => setSelectedImage(sculpture.imageUrl)}
+            onClick={() => setSelectedImage(image.path)}
           >
             <div className="relative aspect-[3/4] rounded-sm overflow-hidden mb-4">
               <Image
-                src={sculpture.imageUrl}
-                alt={sculpture.title}
+                src={image.path}
+                alt={image.filename}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
@@ -60,9 +74,9 @@ export function Gallery({ sculptures }: GalleryProps) {
             </div>
             <div>
               <h3 className="font-bold text-lg text-[#333333] mb-1 line-clamp-1">
-                {sculpture.title}
+                {image.filename}
               </h3>
-              <p className="text-sm text-[#666666]">{sculpture.category}</p>
+              <p className="text-sm text-[#666666]">{image.category}</p>
             </div>
           </div>
         ))}
@@ -89,7 +103,7 @@ export function Gallery({ sculptures }: GalleryProps) {
           >
             <Image
               src={selectedImage}
-              alt="Selected sculpture"
+              alt="Selected image"
               fill
               className="object-contain"
               sizes="100vw"

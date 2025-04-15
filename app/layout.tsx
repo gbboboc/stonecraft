@@ -1,27 +1,25 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers";
-import { BodyAttributes } from "./components/BodyAttributes";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ELITPETRA",
-  description:
-    "Artă premium în piatră și meșteșug pentru monumente și sculpturi",
+  title: "StoneCraft",
+  description: "StoneCraft - Sculptură în piatră",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <BodyAttributes />
-        <Providers>{children}</Providers>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className} suppressHydrationWarning>
+        {children}
+        <Toaster />
       </body>
     </html>
   );
