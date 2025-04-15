@@ -3,11 +3,52 @@ import fs from 'fs';
 import path from 'path';
 import { sculptures } from '@/data/sculptures';
 
+// Mapare între numele categoriilor în română și directoarele corespunzătoare
+const CATEGORY_MAPPING: { [key: string]: string } = {
+  'Sculpturi': 'sculptures',
+  'Troițe': 'cross',
+  'Monumente': 'monuments',
+  'Altele': 'other-pictures'
+};
+
 // Funcție helper pentru a salva datele în fișier
 async function saveSculptures(sculptures: any[]) {
   const filePath = path.join(process.cwd(), 'data', 'sculptures.ts');
   const content = `export const sculptures = ${JSON.stringify(sculptures, null, 2)};`;
   await fs.promises.writeFile(filePath, content, 'utf-8');
+}
+
+// Funcție helper pentru a muta o imagine într-un nou director
+async function moveImage(oldPath: string, newCategory: string): Promise<string> {
+  const publicDir = path.join(process.cwd(), 'public');
+  const oldFullPath = path.join(publicDir, oldPath);
+  
+  if (!fs.existsSync(oldFullPath)) {
+    console.error('Image not found:', oldFullPath);
+    return oldPath; // Returnăm path-ul vechi dacă imaginea nu există
+  }
+
+  const fileName = path.basename(oldPath);
+  const newDir = path.join(publicDir, 'uploads', CATEGORY_MAPPING[newCategory]);
+  
+  // Creăm directorul nou dacă nu există
+  if (!fs.existsSync(newDir)) {
+    fs.mkdirSync(newDir, { recursive: true });
+  }
+
+  const newFullPath = path.join(newDir, fileName);
+  const newPath = `/uploads/${CATEGORY_MAPPING[newCategory]}/${fileName}`;
+
+  try {
+    // Copiem fișierul în noua locație
+    await fs.promises.copyFile(oldFullPath, newFullPath);
+    // Ștergem fișierul vechi
+    await fs.promises.unlink(oldFullPath);
+    return newPath;
+  } catch (error) {
+    console.error('Error moving image:', error);
+    return oldPath; // Returnăm path-ul vechi în caz de eroare
+  }
 }
 
 export async function GET() {
@@ -44,7 +85,7 @@ export async function POST(request: Request) {
     }
 
     // Procesare imagini
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads', category.toLowerCase());
+    const uploadDir = path.join(process.cwd(), 'public', 'uploads', CATEGORY_MAPPING[category]);
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir, { recursive: true });
     }
@@ -55,7 +96,7 @@ export async function POST(request: Request) {
       const fileName = `${Date.now()}-${photo.name}`;
       const filePath = path.join(uploadDir, fileName);
       await fs.promises.writeFile(filePath, Buffer.from(buffer));
-      uploadedPhotos.push(`/uploads/${category.toLowerCase()}/${fileName}`);
+      uploadedPhotos.push(`/uploads/${CATEGORY_MAPPING[category]}/${fileName}`);
     }
 
     // Creare sculptură nouă
@@ -119,23 +160,36 @@ export async function PUT(request: Request) {
 
     const existingSculpture = sculptures[sculptureIndex];
 
-    // Procesare imagini noi (dacă există)
+    // Verificăm dacă categoria s-a schimbat
+    const categoryChanged = existingSculpture.category !== category;
     let updatedPhotos = existingSculpture.images || [existingSculpture.imageUrl];
+
+    // Dacă categoria s-a schimbat, mutăm imaginile existente în noul director
+    if (categoryChanged) {
+      console.log('Category changed from', existingSculpture.category, 'to', category);
+      const movedPhotos = await Promise.all(
+        updatedPhotos.map(photo => moveImage(photo, category))
+      );
+      updatedPhotos = movedPhotos;
+    }
+
+    // Procesare imagini noi (dacă există)
     if (photos.length > 0 && photos[0].size > 0) {
-      const uploadDir = path.join(process.cwd(), 'public', 'uploads', category.toLowerCase());
+      const uploadDir = path.join(process.cwd(), 'public', 'uploads', CATEGORY_MAPPING[category]);
       if (!fs.existsSync(uploadDir)) {
         fs.mkdirSync(uploadDir, { recursive: true });
       }
 
-      updatedPhotos = [];
+      const newPhotos = [];
       for (const photo of photos) {
         const buffer = await photo.arrayBuffer();
         const fileName = `${Date.now()}-${photo.name}`;
         const filePath = path.join(uploadDir, fileName);
         await fs.promises.writeFile(filePath, Buffer.from(buffer));
-        const photoUrl = `/uploads/${category.toLowerCase()}/${fileName}`;
-        updatedPhotos.push(photoUrl);
+        const photoUrl = `/uploads/${CATEGORY_MAPPING[category]}/${fileName}`;
+        newPhotos.push(photoUrl);
       }
+      updatedPhotos = newPhotos;
     }
 
     // Parsăm caracteristicile
@@ -173,7 +227,7 @@ export async function PUT(request: Request) {
       return NextResponse.json({
         success: true,
         data: updatedSculpture,
-        allSculptures: sculptures // Trimitem înapoi toate sculpturile actualizate
+        allSculptures: sculptures
       });
     } catch (error) {
       console.error('Error saving sculptures:', error);

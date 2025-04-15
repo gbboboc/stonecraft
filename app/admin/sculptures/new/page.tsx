@@ -29,6 +29,7 @@ export default function NewSculpturePage() {
     title: "",
     description: "",
     categoryId: "",
+    category: "",
     features: "",
     material: "",
     photos: [] as File[],
@@ -61,7 +62,7 @@ export default function NewSculpturePage() {
       const form = new FormData();
       form.append("title", formData.title);
       form.append("description", formData.description);
-      form.append("category", formData.categoryId);
+      form.append("category", formData.category);
       form.append("material", formData.material);
 
       // Handle features
@@ -156,9 +157,16 @@ export default function NewSculpturePage() {
                 <Label htmlFor="category">Categorie</Label>
                 <Select
                   value={formData.categoryId}
-                  onValueChange={(value) =>
-                    setFormData({ ...formData, categoryId: value })
-                  }
+                  onValueChange={(value) => {
+                    const selectedCategory = categories.find(
+                      (c) => c.id === value
+                    );
+                    setFormData({
+                      ...formData,
+                      categoryId: value,
+                      category: selectedCategory?.name || "",
+                    });
+                  }}
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Selectează o categorie" />
@@ -202,16 +210,11 @@ export default function NewSculpturePage() {
                 <Input
                   id="photos"
                   type="file"
-                  multiple
                   accept="image/*"
+                  multiple
                   onChange={handleFileChange}
                   required
                 />
-                {formData.photos.length > 0 && (
-                  <p className="text-sm text-muted-foreground mt-2">
-                    {formData.photos.length} fotografii selectate
-                  </p>
-                )}
               </div>
             </div>
 
@@ -219,12 +222,13 @@ export default function NewSculpturePage() {
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => router.push("/admin")}
+                onClick={() => router.back()}
+                disabled={isLoading}
               >
                 Anulează
               </Button>
               <Button type="submit" disabled={isLoading}>
-                {isLoading ? "Se salvează..." : "Salvează Sculptura"}
+                {isLoading ? "Se salvează..." : "Salvează"}
               </Button>
             </div>
           </form>

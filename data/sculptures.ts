@@ -4,7 +4,7 @@ export const sculptures = [
     "title": "Monument Funerar",
     "description": "Monument pentru memoriale tradiționale.",
     "imageUrl": "/uploads/monuments/monument-1.jpg",
-    "category": "Troițe",
+    "category": "Monumente",
     "features": [
       "Detalii Sculptate Manual",
       "Rezistentă la Intemperii",
@@ -19,7 +19,7 @@ export const sculptures = [
     "images": [
       "/uploads/monuments/monument-1.jpg"
     ],
-    "updatedAt": "2025-04-15T22:32:52.663Z"
+    "updatedAt": "2025-04-15T22:51:28.061Z"
   },
   {
     "id": "2",

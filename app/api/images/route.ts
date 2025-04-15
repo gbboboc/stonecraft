@@ -21,10 +21,7 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const category = searchParams.get('category');
-
     const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
-    const categories = Object.keys(CATEGORY_MAPPING);
-
     let images = [];
 
     if (category) {
@@ -58,6 +55,7 @@ export async function GET(request: Request) {
       }
     } else {
       // Return images from all categories
+      const categories = Object.keys(CATEGORY_MAPPING);
       for (const cat of categories) {
         const categoryDir = CATEGORY_MAPPING[cat];
         const categoryPath = path.join(uploadsDir, categoryDir);
@@ -88,9 +86,17 @@ export async function GET(request: Request) {
       }
     }
 
-    return NextResponse.json({
+    // Adăugăm header pentru a preveni cache-ul
+    return new NextResponse(JSON.stringify({
       success: true,
       data: images
+    }), {
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+      }
     });
   } catch (error) {
     console.error('Error fetching images:', error);

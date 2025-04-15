@@ -37,7 +37,10 @@ export function useImages(category?: string) {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache'
           },
+          cache: 'no-store'
         });
         
         if (!response.ok) {
@@ -45,11 +48,16 @@ export function useImages(category?: string) {
         }
         
         const data = await response.json();
-        console.log('Received data:', data);
+        console.log('Received data:', {
+          success: data.success,
+          imageCount: data.data?.length || 0,
+          category: category || 'all'
+        });
         
         if (data.success) {
           setImages(data.data);
         } else {
+          console.error('API returned error:', data.error);
           setError(data.error || 'Failed to fetch images');
         }
       } catch (err) {
@@ -60,6 +68,7 @@ export function useImages(category?: string) {
       }
     };
 
+    console.log('useImages hook called with category:', category);
     fetchImages();
   }, [category]);
 
