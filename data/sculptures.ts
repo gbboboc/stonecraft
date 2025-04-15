@@ -6,7 +6,7 @@ export const sculptures: Sculpture[] = [
     id: "1",
     title: "Monument Funerar",
     description: "Monument pentru memoriale tradiționale.",
-    imageUrl: "/monuments/monument-1.jpg",
+    imageUrl: "/uploads/monuments/monument-1.jpg",
     category: "Monumente din Piatră",
     features: [
       "Detalii Sculptate Manual",
@@ -24,7 +24,7 @@ export const sculptures: Sculpture[] = [
     id: "2",
     title: "Monument Funerar",
     description: "",
-    imageUrl: "/monuments/monument-2.jpg",
+    imageUrl: "/uploads/monuments/monument-2.jpg",
     category: "Monumente din Piatră",
     features: [
       "Rezistent la Intemperii",
@@ -41,7 +41,7 @@ export const sculptures: Sculpture[] = [
     id: "3",
     title: "Monument",
     description: "Monument pentru memoriale tradiționale.",
-    imageUrl: "/monuments/monument-3.jpg",
+    imageUrl: "/uploads/monuments/monument-3.jpg",
     category: "Monumente din Piatră",
     features: [
       "Design Tradițional",
@@ -59,7 +59,7 @@ export const sculptures: Sculpture[] = [
     id: "4",
     title: "Monument Funerar",
     description: "Monument pentru memoriale tradiționale.",
-    imageUrl: "/monuments/monument-4.jpg",
+    imageUrl: "/uploads/monuments/monument-4.jpg",
     category: "Monumente din Piatră",
     features: [
       "Design Modern",
@@ -80,7 +80,7 @@ export const sculptures: Sculpture[] = [
     id: "5",
     title: "Sculptură Modernă Abstractă",
     description: "O piesă contemporană care combină forme abstracte cu elemente tradiționale, creată pentru a adăuga un accent artistic modern în orice spațiu.",
-    imageUrl: "/sculptures/sculpture-1.jpg",
+    imageUrl: "/uploads/sculptures/sculpture-1.jpg",
     category: "Sculpturi",
     features: [
       "Design Modern",
@@ -99,7 +99,7 @@ export const sculptures: Sculpture[] = [
     id: "6",
     title: "Sculptură Religioasă",
     description: "Operă de artă unică, creată cu pasiune și măiestrie.",
-    imageUrl: "/sculptures/sculpture-2.jpg",
+    imageUrl: "/uploads/sculptures/sculpture-2.jpg",
     category: "Sculpturi",
     features: [
       "Design Unic",
@@ -118,7 +118,7 @@ export const sculptures: Sculpture[] = [
     id: "7",
     title: "Sculptură Religioasă",
     description: "Element decorativ pentru spații interioare și exterioare.",
-    imageUrl: "/sculptures/sculpture-3.jpg",
+    imageUrl: "/uploads/sculptures/sculpture-3.jpg",
     category: "Sculpturi",
     features: [
       "Design Decorativ",
@@ -137,7 +137,7 @@ export const sculptures: Sculpture[] = [
     id: "8",
     title: "Sculptură Memorială",
     description: "Piesă memorială cu semnificație profundă.",
-    imageUrl: "/sculptures/sculpture-4.jpg",
+    imageUrl: "/uploads/sculptures/sculpture-4.jpg",
     category: "Sculpturi",
     features: [
       "Semnificație Specială",
@@ -156,7 +156,7 @@ export const sculptures: Sculpture[] = [
     id: "8a",
     title: "Sculptură Decorativă",
     description: "Sculptură decorativă cu design modern și linii elegante.",
-    imageUrl: "/sculptures/sculpture-5.jpg",
+    imageUrl: "/uploads/sculptures/sculpture-5.jpg",
     category: "Sculpturi",
     features: [
       "Design Modern",
@@ -177,7 +177,7 @@ export const sculptures: Sculpture[] = [
     id: "9",
     title: "Troițe",
     description: "Troițe tradiționale din piatră pentru memoriale.",
-    imageUrl: "/cross/cross-1.jpg",
+    imageUrl: "/uploads/cross/cross-1.jpg",
     category: "Cruci din Piatră",
     features: [
       "Design Clasic",
@@ -196,7 +196,7 @@ export const sculptures: Sculpture[] = [
     id: "10",
     title: "Troițe",
     description: "Troițe tradiționale din piatră pentru memoriale.",
-    imageUrl: "/cross/cross-2.jpg",
+    imageUrl: "/uploads/cross/cross-2.jpg",
     category: "Cruci din Piatră",
     features: [
       "Design Modern",
@@ -215,7 +215,7 @@ export const sculptures: Sculpture[] = [
     id: "11",
     title: "Troițe",
     description: "Troițe tradiționale din piatră pentru memoriale.",
-    imageUrl: "/cross/cross-3.jpg",
+    imageUrl: "/uploads/cross/cross-3.jpg",
     category: "Cruci din Piatră",
     features: [
       "Elemente Artistice",
@@ -234,7 +234,7 @@ export const sculptures: Sculpture[] = [
     id: "12",
     title: "Troițe",
     description: "Troițe tradiționale din piatră pentru memoriale.",
-    imageUrl: "/cross/cross-4.jpg",
+    imageUrl: "/uploads/cross/cross-4.jpg",
     category: "Cruci din Piatră",
     features: [
       "Design Personalizat",
@@ -255,7 +255,7 @@ export const sculptures: Sculpture[] = [
     id: "14",
     title: "Element Decorativ",
     description: "Element decorativ din piatră pentru spații interioare și exterioare.",
-    imageUrl: "/other-pictures/other-1.jpg",
+    imageUrl: "/uploads/other-pictures/other-1.jpg",
     category: "Altele",
     features: [
       "Versatilitate",
@@ -274,7 +274,7 @@ export const sculptures: Sculpture[] = [
     id: "15",
     title: "Piesă Artistică",
     description: "Piesă artistică unică din piatră naturală.",
-    imageUrl: "/other-pictures/other-2.jpg",
+    imageUrl: "/uploads/other-pictures/other-2.jpg",
     category: "Altele",
     features: [
       "Design Artistic",
@@ -293,7 +293,7 @@ export const sculptures: Sculpture[] = [
     id: "16",
     title: "Element Decorativ",
     description: "Element decorativ din piatră pentru spații interioare și exterioare.",
-    imageUrl: "/other-pictures/other-3.jpg",
+    imageUrl: "/uploads/other-pictures/other-3.jpg",
     category: "Altele",
     features: [
       "Personalizare",
@@ -312,7 +312,7 @@ export const sculptures: Sculpture[] = [
     id: "17",
     title: "Piesă Decorativă",
     description: "Piesă decorativă pentru completarea spațiilor.",
-    imageUrl: "/other-pictures/other-4.jpg",
+    imageUrl: "/uploads/other-pictures/other-4.jpg",
     category: "Altele",
     features: [
       "Versatilitate",
