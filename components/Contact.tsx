@@ -62,8 +62,10 @@ export function Contact({ contactInfo }: ContactProps) {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
+    console.log("Starting form submission...");
 
     if (!validateForm()) {
+      console.log("Form validation failed");
       setIsSubmitting(false);
       return;
     }
@@ -71,8 +73,10 @@ export function Contact({ contactInfo }: ContactProps) {
     try {
       // Get the reCAPTCHA token
       const token = recaptchaRef.current?.getValue();
+      console.log("Got reCAPTCHA token:", token ? "yes" : "no");
 
       if (!token) {
+        console.log("No reCAPTCHA token");
         setErrors((prev) => ({
           ...prev,
           captcha: "Vă rugăm să verificați că nu sunteți robot",
@@ -80,6 +84,11 @@ export function Contact({ contactInfo }: ContactProps) {
         setIsSubmitting(false);
         return;
       }
+
+      console.log("Sending form data:", {
+        ...formData,
+        captchaToken: "token-hidden",
+      });
 
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -89,15 +98,21 @@ export function Contact({ contactInfo }: ContactProps) {
         body: JSON.stringify({ ...formData, captchaToken: token }),
       });
 
+      console.log("Got response:", response.status);
+      const responseData = await response.json();
+      console.log("Response data:", responseData);
+
       if (!response.ok) {
-        throw new Error("Failed to send message");
+        throw new Error(responseData.error || "Failed to send message");
       }
 
       // Clear form and show success message
       setFormData({ name: "", email: "", message: "" });
       setSubmitStatus("success");
       recaptchaRef.current?.reset();
+      console.log("Form submitted successfully");
     } catch (error) {
+      console.error("Form submission error:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -256,6 +271,29 @@ export function Contact({ contactInfo }: ContactProps) {
                   className="w-full bg-[#D6A461] text-white py-3 rounded-sm hover:bg-[#C89551] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? "Se trimite..." : "Trimite"}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={async () => {
+                    try {
+                      console.log("Testing direct email send...");
+                      const response = await fetch("/api/test-resend");
+                      const data = await response.json();
+                      console.log("Test email response:", data);
+                      alert(
+                        data.success
+                          ? "Email de test trimis cu succes!"
+                          : "Eroare: " + data.error
+                      );
+                    } catch (error) {
+                      console.error("Test email error:", error);
+                      alert("Eroare la trimiterea emailului de test");
+                    }
+                  }}
+                  className="w-full mt-2 bg-gray-200 text-gray-700 py-3 rounded-sm hover:bg-gray-300 transition-colors"
+                >
+                  Trimite Email de Test
                 </button>
               </form>
             </div>

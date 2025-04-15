@@ -30,6 +30,17 @@ export default function Home() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [heroFormData, setHeroFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
+    null
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,6 +78,52 @@ export default function Home() {
     const servicesSection = document.getElementById("services");
     if (servicesSection) {
       servicesSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleHeroFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: `${heroFormData.firstName} ${heroFormData.lastName}`,
+          email: heroFormData.email,
+          message: `
+Telefon: ${heroFormData.phone}
+
+Mesaj:
+${heroFormData.message}
+          `,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message");
+      }
+
+      // Clear form and show success message
+      setHeroFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+      setSubmitStatus("success");
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -174,7 +231,7 @@ export default function Home() {
                 </h3>
                 <p className="text-white/70 mt-1">
                   Discutați cu experții noștri despre nevoile dumneavoastră
-                  pentru un memorial
+                  pentru o sculptură
                 </p>
               </div>
             </div>
@@ -310,7 +367,7 @@ export default function Home() {
             </div>
 
             <div>
-              <form className="space-y-6">
+              <form onSubmit={handleHeroFormSubmit} className="space-y-6">
                 <div className="grid grid-cols-2 gap-6">
                   <div>
                     <label
@@ -322,8 +379,16 @@ export default function Home() {
                     <input
                       type="text"
                       id="first-name"
+                      value={heroFormData.firstName}
+                      onChange={(e) =>
+                        setHeroFormData({
+                          ...heroFormData,
+                          firstName: e.target.value,
+                        })
+                      }
                       placeholder="Prenumele dvs."
                       className="w-full px-4 py-3 bg-[#F9F9F9] border-b-2 border-[#EEEEEE] focus:outline-none focus:border-[#D6A461] text-[#333333] transition-all duration-300 placeholder:text-[#999999]"
+                      required
                     />
                   </div>
                   <div>
@@ -336,8 +401,16 @@ export default function Home() {
                     <input
                       type="text"
                       id="last-name"
+                      value={heroFormData.lastName}
+                      onChange={(e) =>
+                        setHeroFormData({
+                          ...heroFormData,
+                          lastName: e.target.value,
+                        })
+                      }
                       placeholder="Numele dvs."
                       className="w-full px-4 py-3 bg-[#F9F9F9] border-b-2 border-[#EEEEEE] focus:outline-none focus:border-[#D6A461] text-[#333333] transition-all duration-300 placeholder:text-[#999999]"
+                      required
                     />
                   </div>
                 </div>
@@ -352,8 +425,16 @@ export default function Home() {
                   <input
                     type="email"
                     id="email"
+                    value={heroFormData.email}
+                    onChange={(e) =>
+                      setHeroFormData({
+                        ...heroFormData,
+                        email: e.target.value,
+                      })
+                    }
                     placeholder="Adresa dvs. de email"
                     className="w-full px-4 py-3 bg-[#F9F9F9] border-b-2 border-[#EEEEEE] focus:outline-none focus:border-[#D6A461] text-[#333333] transition-all duration-300 placeholder:text-[#999999]"
+                    required
                   />
                 </div>
 
@@ -367,8 +448,16 @@ export default function Home() {
                   <input
                     type="tel"
                     id="phone"
+                    value={heroFormData.phone}
+                    onChange={(e) =>
+                      setHeroFormData({
+                        ...heroFormData,
+                        phone: e.target.value,
+                      })
+                    }
                     placeholder="Numărul dvs. de telefon"
                     className="w-full px-4 py-3 bg-[#F9F9F9] border-b-2 border-[#EEEEEE] focus:outline-none focus:border-[#D6A461] text-[#333333] transition-all duration-300 placeholder:text-[#999999]"
+                    required
                   />
                 </div>
 
@@ -381,18 +470,40 @@ export default function Home() {
                   </label>
                   <textarea
                     id="message"
+                    value={heroFormData.message}
+                    onChange={(e) =>
+                      setHeroFormData({
+                        ...heroFormData,
+                        message: e.target.value,
+                      })
+                    }
                     rows={4}
                     placeholder="Scrieți mesajul dvs. aici..."
                     className="w-full px-4 py-3 bg-[#F9F9F9] border-b-2 border-[#EEEEEE] focus:outline-none focus:border-[#D6A461] text-[#333333] transition-all duration-300 placeholder:text-[#999999] resize-none"
+                    required
                   ></textarea>
                 </div>
 
+                {submitStatus === "success" && (
+                  <div className="text-green-600 text-sm">
+                    Mesajul a fost trimis cu succes! Vă vom contacta în curând.
+                  </div>
+                )}
+
+                {submitStatus === "error" && (
+                  <div className="text-red-600 text-sm">
+                    A apărut o eroare la trimiterea mesajului. Vă rugăm să
+                    încercați din nou.
+                  </div>
+                )}
+
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   className="group relative mt-8 w-full py-5 bg-[#D6A461] text-white text-base overflow-hidden rounded-sm uppercase tracking-wider font-medium transition-all duration-300 hover:shadow-xl hover:translate-y-[-2px] active:translate-y-[0px]"
                 >
                   <span className="relative z-10 flex items-center justify-center">
-                    Trimite Mesajul
+                    {isSubmitting ? "Se trimite..." : "Trimite Mesajul"}
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-[#D6A461] via-[#E3B171] to-[#D6A461] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

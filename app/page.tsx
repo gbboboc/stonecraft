@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import Home from "../home"
+import Home from "../home";
 
 export default function SyntheticV0PageForDeployment() {
-  return <Home />
+  return <Home />;
 }
