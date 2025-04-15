@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { LayoutDashboard, Image, Shapes, Settings } from "lucide-react";
+import { LayoutDashboard, Image, Settings } from "lucide-react";
 
 const navigation = [
-  { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
-  { name: "Categories", href: "/admin/categories", icon: Shapes },
-  { name: "Gallery", href: "/admin/gallery", icon: Image },
-  { name: "Settings", href: "/admin/settings", icon: Settings },
+  { name: "Panou de Control", href: "/admin", icon: LayoutDashboard },
+  { name: "Sculpturi", href: "/admin/sculptures", icon: Image },
+  { name: "Setări", href: "/admin/settings", icon: Settings },
 ];
 
 export function Sidebar() {
@@ -16,7 +15,7 @@ export function Sidebar() {
   return (
     <div className="flex h-full w-64 flex-col bg-gray-900">
       <div className="flex h-16 items-center justify-center border-b border-gray-800">
-        <h1 className="text-xl font-bold text-white">Admin Dashboard</h1>
+        <h1 className="text-xl font-bold text-white">Panou de Administrare</h1>
       </div>
       <nav className="flex-1 space-y-1 px-2 py-4">
         {navigation.map((item) => {

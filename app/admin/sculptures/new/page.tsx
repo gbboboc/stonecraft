@@ -82,18 +82,20 @@ export default function NewSculpturePage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">Add New Sculpture</h1>
+        <h1 className="text-3xl font-bold tracking-tight">
+          Adaugă Sculptură Nouă
+        </h1>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Sculpture Details</CardTitle>
+          <CardTitle>Detalii Sculptură</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-4">
               <div>
-                <Label htmlFor="title">Title</Label>
+                <Label htmlFor="title">Titlu</Label>
                 <Input
                   id="title"
                   value={formData.title}
@@ -105,7 +107,7 @@ export default function NewSculpturePage() {
               </div>
 
               <div>
-                <Label htmlFor="description">Description</Label>
+                <Label htmlFor="description">Descriere</Label>
                 <Textarea
                   id="description"
                   value={formData.description}
@@ -117,7 +119,7 @@ export default function NewSculpturePage() {
               </div>
 
               <div>
-                <Label htmlFor="category">Category</Label>
+                <Label htmlFor="category">Categorie</Label>
                 <Select
                   value={formData.categoryId}
                   onValueChange={(value) =>
@@ -125,7 +127,7 @@ export default function NewSculpturePage() {
                   }
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a category" />
+                    <SelectValue placeholder="Selectează o categorie" />
                   </SelectTrigger>
                   <SelectContent>
                     {categories.map((category) => (
@@ -138,14 +140,14 @@ export default function NewSculpturePage() {
               </div>
 
               <div>
-                <Label htmlFor="features">Features</Label>
+                <Label htmlFor="features">Caracteristici</Label>
                 <Textarea
                   id="features"
                   value={formData.features}
                   onChange={(e) =>
                     setFormData({ ...formData, features: e.target.value })
                   }
-                  placeholder="Enter features separated by commas"
+                  placeholder="Introduceți caracteristicile separate prin virgulă"
                 />
               </div>
 
@@ -162,7 +164,7 @@ export default function NewSculpturePage() {
               </div>
 
               <div>
-                <Label htmlFor="photos">Photos</Label>
+                <Label htmlFor="photos">Fotografii</Label>
                 <Input
                   id="photos"
                   type="file"
@@ -173,7 +175,7 @@ export default function NewSculpturePage() {
                 />
                 {formData.photos.length > 0 && (
                   <p className="text-sm text-muted-foreground mt-2">
-                    {formData.photos.length} photos selected
+                    {formData.photos.length} fotografii selectate
                   </p>
                 )}
               </div>
@@ -185,10 +187,10 @@ export default function NewSculpturePage() {
                 variant="outline"
                 onClick={() => router.push("/admin")}
               >
-                Cancel
+                Anulează
               </Button>
               <Button type="submit" disabled={isLoading}>
-                {isLoading ? "Saving..." : "Save Sculpture"}
+                {isLoading ? "Se salvează..." : "Salvează Sculptura"}
               </Button>
             </div>
           </form>
