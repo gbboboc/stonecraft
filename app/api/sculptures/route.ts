@@ -98,10 +98,12 @@ export async function PUT(request: Request) {
     const material = formData.get('material') as string;
     const photos = formData.getAll('photos') as File[];
 
+    console.log('Received update request:', { id, title, category });
+
     // Validare
     if (!id || !title || !description || !category || !material) {
       return NextResponse.json(
-        { success: false, error: 'Missing required fields' },
+        { success: false, error: 'Câmpurile obligatorii lipsesc' },
         { status: 400 }
       );
     }
@@ -110,7 +112,7 @@ export async function PUT(request: Request) {
     const sculptureIndex = sculptures.findIndex(s => s.id === id);
     if (sculptureIndex === -1) {
       return NextResponse.json(
-        { success: false, error: 'Sculpture not found' },
+        { success: false, error: 'Sculptura nu a fost găsită' },
         { status: 404 }
       );
     }
@@ -118,20 +120,33 @@ export async function PUT(request: Request) {
     const existingSculpture = sculptures[sculptureIndex];
 
     // Procesare imagini noi (dacă există)
-    let updatedPhotos = [...existingSculpture.images];
-    if (photos.length > 0) {
+    let updatedPhotos = existingSculpture.images || [existingSculpture.imageUrl];
+    if (photos.length > 0 && photos[0].size > 0) {
       const uploadDir = path.join(process.cwd(), 'public', 'uploads', category.toLowerCase());
       if (!fs.existsSync(uploadDir)) {
         fs.mkdirSync(uploadDir, { recursive: true });
       }
 
+      updatedPhotos = [];
       for (const photo of photos) {
         const buffer = await photo.arrayBuffer();
         const fileName = `${Date.now()}-${photo.name}`;
         const filePath = path.join(uploadDir, fileName);
         await fs.promises.writeFile(filePath, Buffer.from(buffer));
-        updatedPhotos.push(`/uploads/${category.toLowerCase()}/${fileName}`);
+        const photoUrl = `/uploads/${category.toLowerCase()}/${fileName}`;
+        updatedPhotos.push(photoUrl);
       }
+    }
+
+    // Parsăm caracteristicile
+    let parsedFeatures = [];
+    try {
+      parsedFeatures = features.startsWith('[') 
+        ? JSON.parse(features)
+        : features.split(',').map(f => f.trim()).filter(Boolean);
+    } catch (error) {
+      console.error('Error parsing features:', error);
+      parsedFeatures = [];
     }
 
     // Actualizare sculptură
@@ -140,24 +155,34 @@ export async function PUT(request: Request) {
       title,
       description,
       category,
-      features: features.split(',').map(f => f.trim()),
+      features: parsedFeatures,
       material,
-      imageUrl: updatedPhotos[0],
+      imageUrl: updatedPhotos[0] || existingSculpture.imageUrl,
       images: updatedPhotos,
       updatedAt: new Date().toISOString()
     };
 
+    // Actualizăm array-ul de sculpturi
     sculptures[sculptureIndex] = updatedSculpture;
-    await saveSculptures(sculptures);
 
-    return NextResponse.json({
-      success: true,
-      data: updatedSculpture
-    });
+    // Salvăm în fișier
+    try {
+      await saveSculptures([...sculptures]);
+      console.log('Sculpture updated successfully:', updatedSculpture);
+
+      return NextResponse.json({
+        success: true,
+        data: updatedSculpture,
+        allSculptures: sculptures // Trimitem înapoi toate sculpturile actualizate
+      });
+    } catch (error) {
+      console.error('Error saving sculptures:', error);
+      throw error;
+    }
   } catch (error) {
-    console.error('Error updating sculpture:', error);
+    console.error('Error in PUT handler:', error);
     return NextResponse.json(
-      { success: false, error: 'Failed to update sculpture' },
+      { success: false, error: 'Eroare la actualizarea sculpturii' },
       { status: 500 }
     );
   }

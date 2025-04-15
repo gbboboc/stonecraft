@@ -58,13 +58,47 @@ export default function NewSculpturePage() {
     setIsLoading(true);
 
     try {
-      // TODO: Implement the actual API call to save the sculpture
-      console.log("Form data:", formData);
+      const form = new FormData();
+      form.append("title", formData.title);
+      form.append("description", formData.description);
+      form.append("category", formData.categoryId);
+      form.append("material", formData.material);
 
-      // For now, just redirect back to admin dashboard
-      router.push("/admin");
+      // Handle features
+      const featuresArray = formData.features
+        .split(",")
+        .map((f) => f.trim())
+        .filter(Boolean);
+      form.append("features", JSON.stringify(featuresArray));
+
+      // Handle photos
+      formData.photos.forEach((photo) => {
+        form.append("photos", photo);
+      });
+
+      const response = await fetch("/api/sculptures", {
+        method: "POST",
+        body: form,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.error || `HTTP error! status: ${response.status}`
+        );
+      }
+
+      const result = await response.json();
+      if (result.success) {
+        router.push("/admin/sculptures");
+      } else {
+        throw new Error(result.error || "Failed to save sculpture");
+      }
     } catch (error) {
       console.error("Error saving sculpture:", error);
+      alert(
+        "A apărut o eroare la salvarea sculpturii. Vă rugăm să încercați din nou."
+      );
     } finally {
       setIsLoading(false);
     }
