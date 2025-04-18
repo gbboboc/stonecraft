@@ -1,27 +1,5 @@
 export const sculptures = [
   {
-    "id": "1",
-    "title": "Monument Funerar",
-    "description": "Monument pentru memoriale tradiționale.",
-    "imageUrl": "/uploads/monuments/monument-1.jpg",
-    "category": "Monumente",
-    "features": [
-      "Detalii Sculptate Manual",
-      "Rezistentă la Intemperii",
-      "Opțiuni Personalizabile"
-    ],
-    "dimensions": {
-      "height": 180,
-      "width": 60,
-      "depth": 60
-    },
-    "material": "Granit",
-    "images": [
-      "/uploads/monuments/monument-1.jpg"
-    ],
-    "updatedAt": "2025-04-15T22:51:28.061Z"
-  },
-  {
     "id": "2",
     "title": "Monument Funerar",
     "description": "Monument pentru memoriale tradiționale.",
@@ -36,11 +14,11 @@ export const sculptures = [
       "width": 100,
       "depth": 30
     },
-    "material": "Piatră",
+    "material": "Granit",
     "images": [
       "/uploads/monuments/monument-2.jpg"
     ],
-    "updatedAt": "2025-04-15T22:17:58.440Z"
+    "updatedAt": "2025-04-18T21:48:31.054Z"
   },
   {
     "id": "3",
@@ -127,11 +105,11 @@ export const sculptures = [
       "width": 70,
       "depth": 70
     },
-    "material": "Granit",
+    "material": "Piatră",
     "images": [
       "/uploads/sculptures/sculpture-2.jpg"
     ],
-    "updatedAt": "2025-04-15T22:18:24.473Z"
+    "updatedAt": "2025-04-18T21:51:41.471Z"
   },
   {
     "id": "7",
@@ -385,5 +363,20 @@ export const sculptures = [
       "/uploads/other-pictures/other-4.jpg"
     ],
     "updatedAt": "2025-04-15T22:18:50.480Z"
+  },
+  {
+    "id": "x70rlx56u",
+    "title": "Monument Funerar ",
+    "description": "monument funerar",
+    "category": "Monumente",
+    "features": [
+      "[]"
+    ],
+    "material": "Piatră",
+    "imageUrl": "/uploads/monuments/1745012974587-photo_2025-04-18_19-32-56.jpg",
+    "images": [
+      "/uploads/monuments/1745012974587-photo_2025-04-18_19-32-56.jpg"
+    ],
+    "createdAt": "2025-04-18T21:49:34.589Z"
   }
 ];
