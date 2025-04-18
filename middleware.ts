@@ -3,15 +3,21 @@ import { getToken } from "next-auth/jwt";
 
 export async function middleware(request: Request) {
   const token = await getToken({ req: request });
-  const isAdminPath = request.url.includes("/admin");
-  const isLoginPath = request.url.includes("/admin/login");
+  const { pathname } = new URL(request.url);
 
-  if (isAdminPath && !isLoginPath && !token) {
-    return NextResponse.redirect(new URL("/admin/login", request.url));
+  // Allow access to login page
+  if (pathname === "/admin/login") {
+    if (token) {
+      return NextResponse.redirect(new URL("/admin", request.url));
+    }
+    return NextResponse.next();
   }
 
-  if (isLoginPath && token) {
-    return NextResponse.redirect(new URL("/admin", request.url));
+  // Protect admin routes
+  if (pathname.startsWith("/admin")) {
+    if (!token) {
+      return NextResponse.redirect(new URL("/admin/login", request.url));
+    }
   }
 
   return NextResponse.next();
