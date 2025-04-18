@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ratelimit } from "@/lib/rate-limit";
+import { rateLimit } from "@/lib/rate-limit";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -29,24 +29,12 @@ export default function LoginPage() {
     const password = formData.get("password") as string;
 
     try {
-      // Check rate limit with error handling
-      try {
-        const { success, limit, reset, remaining } = await ratelimit.limit(
-          email
-        );
-
-        if (!success) {
-          setError(
-            `Too many attempts. Please try again in ${Math.ceil(
-              (reset - Date.now()) / 1000
-            )} seconds.`
-          );
-          setRemainingAttempts(remaining);
-          return;
-        }
-      } catch (rateLimitError) {
-        console.error("Rate limit error:", rateLimitError);
-        // Continue with login if rate limiting fails
+      // Check rate limit
+      const isAllowed = await rateLimit(5, 60)(email);
+      if (!isAllowed) {
+        setError("Too many attempts. Please try again later.");
+        setIsLoading(false);
+        return;
       }
 
       const result = await signIn("credentials", {

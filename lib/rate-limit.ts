@@ -1,10 +1,32 @@
-import { Ratelimit } from '@upstash/ratelimit';
-import { Redis } from '@upstash/redis';
+// Simple in-memory rate limiting
+const ipRequests = new Map<string, { count: number; timestamp: number }>();
 
-// Create a new ratelimit instance
-export const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(10, '10 s'), // 10 requests per 10 seconds
-  analytics: true,
-  prefix: '@upstash/ratelimit',
-}); 
+export function rateLimit(limit: number = 10, window: number = 60) {
+  return async (ip: string) => {
+    const now = Date.now();
+    const windowStart = now - window * 1000;
+
+    // Clean up old entries
+    for (const [key, value] of ipRequests.entries()) {
+      if (value.timestamp < windowStart) {
+        ipRequests.delete(key);
+      }
+    }
+
+    // Get or create request count for this IP
+    const requestData = ipRequests.get(ip) || { count: 0, timestamp: now };
+    
+    // Reset count if outside window
+    if (requestData.timestamp < windowStart) {
+      requestData.count = 0;
+      requestData.timestamp = now;
+    }
+
+    // Increment count
+    requestData.count++;
+    ipRequests.set(ip, requestData);
+
+    // Check if over limit
+    return requestData.count <= limit;
+  };
+} 
