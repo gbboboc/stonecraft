@@ -1,13 +1,10 @@
 import { Resend } from 'resend';
 
-// Verifică dacă cheia API există
-const apiKey = process.env.RESEND_API_KEY;
-if (!apiKey) {
-  console.error('RESEND_API_KEY is missing in environment variables');
-}
+// Hardcodăm temporar cheia API pentru a rezolva problema de build
+const apiKey = 're_Sub486y8_2xcgazzpXoqAJQmrEXscge4t';
 
-// Creează o instanță Resend doar dacă cheia API există
-export const resend = apiKey ? new Resend(apiKey) : null;
+// Creează o instanță Resend
+export const resend = new Resend(apiKey);
 
 // Funcție helper pentru a trimite emailuri
 export async function sendEmail({ to, subject, text, replyTo }: {
@@ -16,10 +13,6 @@ export async function sendEmail({ to, subject, text, replyTo }: {
   text: string;
   replyTo?: string;
 }) {
-  if (!resend) {
-    throw new Error('Resend client is not initialized properly');
-  }
-
   return resend.emails.send({
     from: 'onboarding@resend.dev',
     to: [to],

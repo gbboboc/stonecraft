@@ -24,14 +24,8 @@ export async function POST(request: Request) {
 
     // Validate captcha token here if needed
     
-    const contactEmail = process.env.CONTACT_EMAIL;
-    if (!contactEmail) {
-      console.error('CONTACT_EMAIL is missing in environment variables');
-      return NextResponse.json(
-        { error: 'Email service is not configured properly' },
-        { status: 500 }
-      );
-    }
+    // Hardcodăm temporar emailul de contact pentru a rezolva problema de build
+    const contactEmail = 'ghitlanvictor@gmail.com';
     
     console.log('Attempting to send email with:', {
       to: contactEmail,
