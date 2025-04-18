@@ -1,14 +1,23 @@
 "use client";
 
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { authConfig } from "@/auth.config";
 import { signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authConfig);
+
+  if (!session) {
+    redirect("/admin/login");
+  }
+
   const router = useRouter();
 
   const handleLogout = async () => {
