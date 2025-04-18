@@ -41,13 +41,14 @@ export default function LoginPage() {
         email,
         password,
         redirect: false,
+        callbackUrl: "/admin",
       });
 
       if (result?.error) {
         setError("Invalid email or password");
         setRemainingAttempts((prev) => Math.max(0, prev - 1));
-      } else {
-        router.push("/admin");
+      } else if (result?.url) {
+        router.push(result.url);
       }
     } catch (error) {
       console.error("Login error:", error);
