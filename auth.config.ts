@@ -2,23 +2,6 @@ import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
 export const authConfig = {
-  pages: {
-    signIn: "/admin/login",
-  },
-  callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
-      const isLoggedIn = !!auth?.user;
-      const isOnDashboard = nextUrl.pathname.startsWith("/admin");
-      const isOnLoginPage = nextUrl.pathname === "/admin/login";
-
-      if (isOnDashboard) {
-        if (isLoggedIn) return true;
-        if (isOnLoginPage) return true;
-        return false;
-      }
-      return true;
-    },
-  },
   providers: [
     Credentials({
       async authorize(credentials) {
@@ -36,4 +19,21 @@ export const authConfig = {
       },
     }),
   ],
+  pages: {
+    signIn: "/admin/login",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+      }
+      return session;
+    },
+  },
 } satisfies NextAuthConfig; 
