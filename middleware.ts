@@ -5,7 +5,7 @@ export async function middleware(request: Request) {
   const token = await getToken({ req: request });
   const { pathname } = new URL(request.url);
 
-  // Allow access to login page
+  // Specifically handle /admin/login
   if (pathname === "/admin/login") {
     if (token) {
       return NextResponse.redirect(new URL("/admin", request.url));
@@ -13,10 +13,12 @@ export async function middleware(request: Request) {
     return NextResponse.next();
   }
 
-  // Protect admin routes
+  // All other /admin routes require authentication
   if (pathname.startsWith("/admin")) {
     if (!token) {
-      return NextResponse.redirect(new URL("/admin/login", request.url));
+      const loginUrl = new URL("/admin/login", request.url);
+      loginUrl.searchParams.set("callbackUrl", pathname);
+      return NextResponse.redirect(loginUrl);
     }
   }
 

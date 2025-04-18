@@ -11,8 +11,9 @@ export default async function AdminLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authConfig);
+  const isLoginPage = false; // This will be handled by middleware
 
-  if (!session && !window.location.pathname.includes("/login")) {
+  if (!session) {
     redirect("/admin/login");
   }
 
