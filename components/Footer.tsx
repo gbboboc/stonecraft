@@ -1,13 +1,5 @@
 import Link from "next/link";
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
+import { Facebook, Mail, Phone, MapPin } from "lucide-react";
 import { ContactInfo } from "../types";
 import { scrollToSection } from "../public/uploads/utils/scroll";
 
@@ -42,30 +34,6 @@ export function Footer({ contactInfo }: FooterProps) {
                 className="text-white/70 hover:text-[#D6A461] transition-colors"
               >
                 <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href={contactInfo.socialMedia.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/70 hover:text-[#D6A461] transition-colors"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a
-                href={contactInfo.socialMedia.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/70 hover:text-[#D6A461] transition-colors"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a
-                href={contactInfo.socialMedia.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/70 hover:text-[#D6A461] transition-colors"
-              >
-                <Linkedin className="h-5 w-5" />
               </a>
             </div>
           </div>

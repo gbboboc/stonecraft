@@ -27,9 +27,6 @@ export interface ContactInfo {
   address: string;
   socialMedia: {
     facebook: string;
-    twitter: string;
-    instagram: string;
-    linkedin: string;
   };
 }
 
